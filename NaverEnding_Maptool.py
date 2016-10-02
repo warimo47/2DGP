@@ -11,7 +11,11 @@ index_x = 0
 index_y = 0
 ViewGrid = True
 MAPx25x25 = [[0 for col in range(25)] for row in range(25)]
-TileChoice = 0
+TileChoice = 4
+ExistShip = False
+ShipXY = [0, 0]
+ExistExit = False
+ExitXY = [0, 0]
 
 # 오픈 캔버스
 open_canvas(WINWIDTH + 108, WINHEIGHT)
@@ -47,11 +51,15 @@ def handle_events():
     global TileChoice
     global TILESIZE
     global MAPx25x25
+    global ExistShip
+    global ShipXY
+    global ExistExit
+    global ExitXY
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             MakingMap = False
-        elif event.type == SDL_MOUSEBUTTONDOWN:
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             MouseX, MouseY = event.x, (WINHEIGHT - 1) - event.y
             # 선택 확인
             if 900 <= MouseX and MouseX < 1008 and 0 <= MouseY and MouseY < 36:
@@ -93,7 +101,112 @@ def handle_events():
             else:
                 etc_x = MouseX // TILESIZE
                 etc_y = MouseY // TILESIZE
-                MAPx25x25[etc_x][etc_y] = TileChoice
+                if (TileChoice == 1) and (36 < MouseX) and (MouseX < 864):
+                    if MAPx25x25[etc_y][etc_x - 1] == 20 or MAPx25x25[etc_y][etc_x - 1] == 1 or MAPx25x25[etc_y][etc_x - 1] == 2:
+                        if MAPx25x25[etc_y - 2][etc_x - 1] == 20 or MAPx25x25[etc_y - 2][etc_x - 1] == 1 or  MAPx25x25[etc_y - 2][etc_x - 1] == 2:
+                            MAPx25x25[etc_y - 2][etc_x - 1] = 0
+                        if MAPx25x25[etc_y - 1][etc_x - 1] == 20 or MAPx25x25[etc_y - 1][etc_x - 1] == 1 or  MAPx25x25[etc_y - 1][etc_x - 1] == 2:
+                            MAPx25x25[etc_y - 1][etc_x - 1] = 0
+                        if MAPx25x25[etc_y + 1][etc_x - 1] == 20 or MAPx25x25[etc_y + 1][etc_x - 1] == 1 or  MAPx25x25[etc_y + 1][etc_x - 1] == 2:
+                            MAPx25x25[etc_y + 1][etc_x - 1] = 0
+                        if MAPx25x25[etc_y + 2][etc_x - 1] == 20 or MAPx25x25[etc_y + 2][etc_x - 1] == 1 or  MAPx25x25[etc_y + 2][etc_x - 1] == 2:
+                            MAPx25x25[etc_y + 2][etc_x - 1] = 0
+                        if MAPx25x25[etc_y][etc_x - 2] == 20 or MAPx25x25[etc_y][etc_x - 2] == 1 or  MAPx25x25[etc_y][etc_x - 2] == 2:
+                            MAPx25x25[etc_y][etc_x - 2] = 0
+                        if MAPx25x25[etc_y][etc_x - 3] == 20 or MAPx25x25[etc_y][etc_x - 3] == 1 or  MAPx25x25[etc_y][etc_x - 3] == 2:
+                            MAPx25x25[etc_y][etc_x - 3] = 0
+                    if MAPx25x25[etc_y][etc_x + 1] == 20 or MAPx25x25[etc_y][etc_x + 1] == 1 or MAPx25x25[etc_y][etc_x + 1] == 2:
+                        if MAPx25x25[etc_y - 2][etc_x + 1] == 20 or MAPx25x25[etc_y - 2][etc_x + 1] == 1 or  MAPx25x25[etc_y - 2][etc_x + 1] == 2:
+                            MAPx25x25[etc_y - 2][etc_x + 1] = 0
+                        if MAPx25x25[etc_y - 1][etc_x + 1] == 20 or MAPx25x25[etc_y - 1][etc_x + 1] == 1 or  MAPx25x25[etc_y - 1][etc_x + 1] == 2:
+                            MAPx25x25[etc_y - 1][etc_x + 1] = 0
+                        if MAPx25x25[etc_y + 1][etc_x + 1] == 20 or MAPx25x25[etc_y + 1][etc_x + 1] == 1 or  MAPx25x25[etc_y + 1][etc_x + 1] == 2:
+                            MAPx25x25[etc_y + 1][etc_x + 1] = 0
+                        if MAPx25x25[etc_y + 2][etc_x + 1] == 20 or MAPx25x25[etc_y + 2][etc_x + 1] == 1 or  MAPx25x25[etc_y + 2][etc_x + 1] == 2:
+                            MAPx25x25[etc_y + 2][etc_x + 1] = 0
+                        if MAPx25x25[etc_y][etc_x + 2] == 20 or MAPx25x25[etc_y][etc_x + 2] == 1 or  MAPx25x25[etc_y][etc_x + 2] == 2:
+                            MAPx25x25[etc_y][etc_x + 2] = 0
+                        if MAPx25x25[etc_y][etc_x + 3] == 20 or MAPx25x25[etc_y][etc_x + 3] == 1 or  MAPx25x25[etc_y][etc_x + 3] == 2:
+                            MAPx25x25[etc_y][etc_x + 3] = 0
+                    if MAPx25x25[etc_y][etc_x] == 20 or MAPx25x25[etc_y][etc_x] == 1 or MAPx25x25[etc_y][etc_x] == 2:
+                        if MAPx25x25[etc_y - 2][etc_x] == 20 or MAPx25x25[etc_y - 2][etc_x] == 1 or  MAPx25x25[etc_y - 2][etc_x] == 2:
+                            MAPx25x25[etc_y - 2][etc_x] = 0
+                        if MAPx25x25[etc_y - 1][etc_x] == 20 or MAPx25x25[etc_y - 1][etc_x] == 1 or  MAPx25x25[etc_y - 1][etc_x] == 2:
+                            MAPx25x25[etc_y - 1][etc_x] = 0
+                        if MAPx25x25[etc_y + 1][etc_x] == 20 or MAPx25x25[etc_y + 1][etc_x] == 1 or  MAPx25x25[etc_y + 1][etc_x] == 2:
+                            MAPx25x25[etc_y + 1][etc_x] = 0
+                        if MAPx25x25[etc_y + 2][etc_x] == 20 or MAPx25x25[etc_y + 2][etc_x] == 1 or  MAPx25x25[etc_y + 2][etc_x] == 2:
+                            MAPx25x25[etc_y + 2][etc_x] = 0
+                    MAPx25x25[etc_y][etc_x - 1] = 20
+                    MAPx25x25[etc_y][etc_x] = TileChoice
+                    MAPx25x25[etc_y][etc_x + 1] = 20
+                elif TileChoice == 2 and 0 < etc_y and etc_y < 24:
+                    if MAPx25x25[etc_y - 1][etc_x] == 20 or MAPx25x25[etc_y - 1][etc_x] == 1 or MAPx25x25[etc_y - 1][etc_x] == 2:
+                        if MAPx25x25[etc_y - 1][etc_x - 2] == 20 or MAPx25x25[etc_y - 1][etc_x - 2] == 1 or  MAPx25x25[etc_y - 1][etc_x - 2] == 2:
+                            MAPx25x25[etc_y -1][etc_x - 2] = 0
+                        if MAPx25x25[etc_y - 1][etc_x - 1] == 20 or MAPx25x25[etc_y - 1][etc_x - 1] == 1 or  MAPx25x25[etc_y - 1][etc_x - 1] == 2:
+                            MAPx25x25[etc_y - 1][etc_x - 1] = 0
+                        if MAPx25x25[etc_y - 1][etc_x + 1] == 20 or MAPx25x25[etc_y - 1][etc_x + 1] == 1 or  MAPx25x25[etc_y - 1][etc_x + 1] == 2:
+                            MAPx25x25[etc_y - 1][etc_x + 1] = 0
+                        if MAPx25x25[etc_y - 1][etc_x + 2] == 20 or MAPx25x25[etc_y - 1][etc_x + 2] == 1 or  MAPx25x25[etc_y - 1][etc_x + 2] == 2:
+                            MAPx25x25[etc_y - 1][etc_x + 2] = 0
+                        if MAPx25x25[etc_y - 2][etc_x] == 20 or MAPx25x25[etc_y - 2][etc_x] == 1 or  MAPx25x25[etc_y - 2][etc_x] == 2:
+                            MAPx25x25[etc_y - 2][etc_x] = 0
+                        if MAPx25x25[etc_y - 3][etc_x] == 20 or MAPx25x25[etc_y - 3][etc_x] == 1 or  MAPx25x25[etc_y - 3][etc_x] == 2:
+                            MAPx25x25[etc_y - 3][etc_x] = 0
+                    if MAPx25x25[etc_y + 1][etc_x] == 20 or MAPx25x25[etc_y + 1][etc_x] == 1 or MAPx25x25[etc_y + 1][etc_x] == 2:
+                        if MAPx25x25[etc_y + 1][etc_x - 2] == 20 or MAPx25x25[etc_y + 1][etc_x - 2] == 1 or  MAPx25x25[etc_y + 1][etc_x - 2] == 2:
+                            MAPx25x25[etc_y + 1][etc_x - 2] = 0
+                        if MAPx25x25[etc_y + 1][etc_x - 1] == 20 or MAPx25x25[etc_y + 1][etc_x - 1] == 1 or  MAPx25x25[etc_y + 1][etc_x - 1] == 2:
+                            MAPx25x25[etc_y + 1][etc_x - 1] = 0
+                        if MAPx25x25[etc_y + 1][etc_x + 1] == 20 or MAPx25x25[etc_y + 1][etc_x + 1] == 1 or  MAPx25x25[etc_y + 1][etc_x + 1] == 2:
+                            MAPx25x25[etc_y + 1][etc_x + 1] = 0
+                        if MAPx25x25[etc_y + 1][etc_x + 2] == 20 or MAPx25x25[etc_y + 1][etc_x + 2] == 1 or  MAPx25x25[etc_y + 1][etc_x + 2] == 2:
+                            MAPx25x25[etc_y + 1][etc_x + 2] = 0
+                        if MAPx25x25[etc_y + 2][etc_x] == 20 or MAPx25x25[etc_y + 2][etc_x] == 1 or  MAPx25x25[etc_y + 2][etc_x] == 2:
+                            MAPx25x25[etc_y + 2][etc_x] = 0
+                        if MAPx25x25[etc_y + 3][etc_x] == 20 or MAPx25x25[etc_y + 3][etc_x] == 1 or  MAPx25x25[etc_y + 3][etc_x] == 2:
+                            MAPx25x25[etc_y + 3][etc_x] = 0
+                    if MAPx25x25[etc_y][etc_x] == 20 or MAPx25x25[etc_y][etc_x] == 1 or MAPx25x25[etc_y][etc_x] == 2:
+                        if MAPx25x25[etc_y][etc_x - 2] == 20 or MAPx25x25[etc_y][etc_x - 2] == 1 or  MAPx25x25[etc_y][etc_x - 2] == 2:
+                            MAPx25x25[etc_y][etc_x - 2] = 0
+                        if MAPx25x25[etc_y][etc_x - 1] == 20 or MAPx25x25[etc_y][etc_x - 1] == 1 or  MAPx25x25[etc_y][etc_x - 1] == 2:
+                            MAPx25x25[etc_y][etc_x - 1] = 0
+                        if MAPx25x25[etc_y][etc_x + 1] == 20 or MAPx25x25[etc_y][etc_x + 1] == 1 or  MAPx25x25[etc_y][etc_x + 1] == 2:
+                            MAPx25x25[etc_y][etc_x + 1] = 0
+                        if MAPx25x25[etc_y][etc_x + 2] == 20 or MAPx25x25[etc_y][etc_x + 2] == 1 or  MAPx25x25[etc_y][etc_x + 2] == 2:
+                            MAPx25x25[etc_y][etc_x + 2] = 0
+                    MAPx25x25[etc_y - 1][etc_x] = 20
+                    MAPx25x25[etc_y][etc_x] = TileChoice
+                    MAPx25x25[etc_y + 1][etc_x] = 20
+                elif TileChoice == 17:
+                    if ExistShip == True:
+                        MAPx25x25[etc_y][etc_x] = TileChoice
+                        MAPx25x25[ShipXY[1]][ShipXY[0]] = 0
+                        ShipXY[0] = etc_x
+                        ShipXY[1] = etc_y
+                    else:
+                        MAPx25x25[etc_y][etc_x] = TileChoice
+                        ShipXY[0] = etc_x
+                        ShipXY[1] = etc_y
+                        ExistShip = True
+                elif TileChoice == 4:
+                    if ExistExit == True:
+                        MAPx25x25[etc_y][etc_x] = TileChoice
+                        MAPx25x25[ExitXY[1]][ExitXY[0]] = 0
+                        ExitXY[0] = etc_x
+                        ExitXY[1] = etc_y
+                    else:
+                        MAPx25x25[etc_y][etc_x] = TileChoice
+                        ExitXY[0] = etc_x
+                        ExitXY[1] = etc_y
+                        ExistExit = True
+                else:
+                    if etc_x == ShipXY[0] and etc_y == ShipXY[1]:
+                        ExistShip = False
+                    if etc_x == ExitXY[0] and etc_y == ExitXY[1]:
+                        ExistExit = False
+                    MAPx25x25[etc_y][etc_x] = TileChoice
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_g:
                 if ViewGrid == True:
@@ -130,19 +243,50 @@ while(MakingMap):
     wall.draw(54 + WINWIDTH, 234)
     ship.draw(90 + WINWIDTH, 234)
     # 맵 그리기
+    index_x = 0
+    index_y = 0
     while(index_y < 25):
+        index_x = 0
         while(index_x < 25):
             if MAPx25x25[index_y][index_x] == 1:
-                pass
+                drill_width.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
             elif MAPx25x25[index_y][index_x] == 2:
-                pass
+                drill_height.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
             elif MAPx25x25[index_y][index_x] == 3:
                 bomb.clip_draw(0, 0, TILESIZE, TILESIZE, (index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 4:
+                exit_gate.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 5:
+                curve2.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 6:
+                curve1.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 7:
+                curve3.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 8:
+                curve4.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 9:
+                portal_red.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 10:
+                portal_blue.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 11:
+                portal_green.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 12:
+                portal_yellow.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 13:
+                portal_purple.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 14:
+                portal_pink.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 15:
+                portal_skyblue.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 16:
+                wall.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
+            elif MAPx25x25[index_y][index_x] == 17:
+                ship.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
             index_x = index_x + 1
         index_y = index_y + 1
+    update_canvas()
+    delay(0.1)
 
-update_canvas()
-delay(0.1)
 
 # 클로스 캔버스
 close_canvas()
