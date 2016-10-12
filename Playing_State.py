@@ -21,6 +21,7 @@ ship = None
 # 게임 오브젝트 클래스 정의
 class Ship:
     global wall
+    global exit_gate
     def __init__(self):
         self.image = load_image('resource\space_ship\space_ship0.png')
         self.x, self.y = 12, 12
@@ -49,6 +50,8 @@ class Ship:
                 elif self.direction == 4:
                     self.y = self.y - 1
                 self.canmove = True
+                self.direction = 0
+            elif self.x == exit_gate.x and self.y == exit_gate.y:
                 self.direction = 0
     def draw(self):
         self.image.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)

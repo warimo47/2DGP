@@ -21,13 +21,13 @@ ExitXY = [0, 0]
 open_canvas(WINWIDTH + 108, WINHEIGHT)
 
 # 이미지 로드
-blbackground = load_image('resource\\background\Blackbackground.png')
+blbackground = load_image('resource\Background\Blackbackground.png')
 ship = load_image('resource\space_ship\space_ship0.png')
 stage1 = load_image('resource\Map\stage1.png')
 grid = load_image('resource\Map\grid_white.png')
 wall = load_image('resource\Tiles\wall.png')
 exit_gate = load_image('resource\Tiles\exit_gate.png')
-bomb = load_image('resource\Tiles\\bomb.png')
+bomb = load_image('resource\Tiles\Bomb.png')
 curve1 = load_image('resource\Tiles\curve1.png')
 curve2 = load_image('resource\Tiles\curve2.png')
 curve3 = load_image('resource\Tiles\curve3.png')
@@ -282,11 +282,10 @@ while(MakingMap):
                 wall.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
             elif MAPx25x25[index_y][index_x] == 17:
                 ship.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            index_x = index_x + 1
-        index_y = index_y + 1
+            index_x += 1
+        index_y += 1
     update_canvas()
     delay(0.1)
-
 
 # 클로스 캔버스
 close_canvas()

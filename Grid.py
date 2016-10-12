@@ -7,4 +7,4 @@ class Grid:
         self.OnOff = False
     def draw(self):
         if self.OnOff == True:
-            self.image.draw(Define_File.WINWIDTH / 2, Define_File.WINHEIGHT / 2)
+            self.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
