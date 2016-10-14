@@ -1,292 +1,214 @@
 from pico2d import *
+import Define_File
+import Status_Board
+import Grid
 
-# 변수 선언
-WINWIDTH = 900
-WINHEIGHT = 900
-TILESIZE = 36
-MakingMap = True
-MouseX = 0
-MouseY = 0
-index_x = 0
-index_y = 0
-ViewGrid = True
-MAPx25x25 = [[0 for col in range(25)] for row in range(25)]
-TileChoice = 4
-ExistShip = False
-ShipXY = [0, 0]
-ExistExit = False
-ExitXY = [0, 0]
+class BackGround:
+    def __init__(self):
+        self.image = load_image('resource\Background\MapToolBack.png')
+    def draw(self):
+        self.image.draw(Define_File.WINWIDTH / 2, Define_File.WINHEIGHT / 2)
 
-# 오픈 캔버스
-open_canvas(WINWIDTH + 108, WINHEIGHT)
+class Tiles:
+    Ship = None
+    Exit_Gate = None
+    Wall = None
+    Portal_Red = None
+    Portal_Blue = None
+    Portal_Green = None
+    Portal_Yellow = None
+    Portal_Skyblue = None
+    Portal_Purple = None
+    Portal_Pink = None
+    Curve1 = None
+    Curve2 = None
+    Curve3 = None
+    Curve4 = None
+    Drill_H_B = None
+    Drill_H_A = None
+    Drill_W_B = None
+    Drill_W_A = None
+    Bomb = None
+    RButton_Top = None
+    RButton_Right = None
+    RButton_Bottom = None
+    RButton_Left = None
+    GButton_Top = None
+    GButton_Right = None
+    GButton_Bottom = None
+    GButton_Left = None
 
-# 이미지 로드
-blbackground = load_image('resource\Background\Blackbackground.png')
-ship = load_image('resource\space_ship\space_ship0.png')
-stage1 = load_image('resource\Map\stage1.png')
-grid = load_image('resource\Map\grid_white.png')
-wall = load_image('resource\Tiles\wall.png')
-exit_gate = load_image('resource\Tiles\exit_gate.png')
-bomb = load_image('resource\Tiles\Bomb.png')
-curve1 = load_image('resource\Tiles\curve1.png')
-curve2 = load_image('resource\Tiles\curve2.png')
-curve3 = load_image('resource\Tiles\curve3.png')
-curve4 = load_image('resource\Tiles\curve4.png')
-drill_height = load_image('resource\Tiles\drill_height.png')
-drill_width = load_image('resource\Tiles\drill_width.png')
-portal_red = load_image('resource\Tiles\portal_red.png')
-portal_blue = load_image('resource\Tiles\portal_blue.png')
-portal_skyblue = load_image('resource\Tiles\portal_skyblue.png')
-portal_green = load_image('resource\Tiles\portal_green.png')
-portal_yellow = load_image('resource\Tiles\portal_yellow.png')
-portal_purple = load_image('resource\Tiles\portal_purple.png')
-portal_pink = load_image('resource\Tiles\portal_pink.png')
+    def __init__(self, type_num):
+        self.x, self.y = 0, 0
+        self.type = type_num
+        self.division = 0
+        if Tiles.Ship == None:
+            Tiles.Ship = load_image('resource\space_ship\space_ship0.png')
+        if Tiles.Exit_Gate == None:
+            Tiles.Exit_Gate = load_image('resource\Tiles\exit_gate.png')
+        if Tiles.Portal_Red == None:
+            Tiles.Portal_Red = load_image('resource\Tiles\portal_red.png')
+        if Tiles.Portal_Blue == None:
+            Tiles.Portal_Blue = load_image('resource\Tiles\portal_blue.png')
+        if Tiles.Portal_Green == None:
+            Tiles.Portal_Green = load_image('resource\Tiles\portal_green.png')
+        if Tiles.Portal_Yellow == None:
+            Tiles.Portal_Yellow = load_image('resource\Tiles\portal_yellow.png')
+        if Tiles.Portal_Purple == None:
+            Tiles.Portal_Purple = load_image('resource\Tiles\portal_purple.png')
+        if Tiles.Portal_Pink == None:
+            Tiles.Portal_Pink = load_image('resource\Tiles\portal_pink.png')
+        if Tiles.Portal_Skyblue == None:
+            Tiles.Portal_Skyblue = load_image('resource\Tiles\portal_skyblue.png')
+        if Tiles.Wall == None:
+            Tiles.Wall = load_image('resource\Tiles\wall.png')
+        if Tiles.Curve1 == None:
+            Tiles.Curve1 = load_image('resource\Tiles\Curve1.png')
+        if Tiles.Curve2 == None:
+            Tiles.Curve2 = load_image('resource\Tiles\Curve2.png')
+        if Tiles.Curve3 == None:
+            Tiles.Curve3 = load_image('resource\Tiles\Curve3.png')
+        if Tiles.Curve4 == None:
+            Tiles.Curve4 = load_image('resource\Tiles\Curve4.png')
+        if Tiles.Drill_H_B == None:
+            Tiles.Drill_H_B = load_image('resource\Tiles\Drill_H_B.png')
+        if Tiles.Drill_H_A == None:
+            Tiles.Drill_H_A = load_image('resource\Tiles\Drill_H_A.png')
+        if Tiles.Drill_W_B == None:
+            Tiles.Drill_W_B = load_image('resource\Tiles\Drill_W_B.png')
+        if Tiles.Drill_W_A == None:
+            Tiles.Drill_W_A = load_image('resource\Tiles\Drill_W_A.png')
+        if Tiles.Bomb == None:
+            Tiles.Bomb = load_image('resource\Tiles\Bomb.png')
+        if Tiles.RButton_Top == None:
+            Tiles.RButton_Top = load_image('resource\Tiles\RButton_Top.png')
+        if Tiles.RButton_Right == None:
+            Tiles.RButton_Right = load_image('resource\Tiles\RButton_Right.png')
+        if Tiles.RButton_Bottom == None:
+            Tiles.RButton_Bottom = load_image('resource\Tiles\RButton_Bottom.png')
+        if Tiles.RButton_Left == None:
+            Tiles.RButton_Left = load_image('resource\Tiles\RButton_Left.png')
+        if Tiles.GButton_Top == None:
+            Tiles.GButton_Top = load_image('resource\Tiles\GButton_Top.png')
+        if Tiles.GButton_Right == None:
+            Tiles.GButton_Right = load_image('resource\Tiles\GButton_Right.png')
+        if Tiles.GButton_Bottom == None:
+            Tiles.GButton_Bottom = load_image('resource\Tiles\GButton_Bottom.png')
+        if Tiles.GButton_Left == None:
+            Tiles.GButton_Left = load_image('resource\Tiles\GButton_Left.png')
+
+    def draw(self):
+        if self.type == 0:
+            Tiles.Ship.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 1:
+            Tiles.Exit_Gate.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 2:
+            Tiles.Portal_Red.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 3:
+            Tiles.Portal_Blue.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 4:
+            Tiles.Portal_Green.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 5:
+            Tiles.Portal_Yellow.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 6:
+            Tiles.Portal_Purple.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 7:
+            Tiles.Portal_Pink.daw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 8:
+            Tiles.Portal_Skyblue.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 9:
+            Tiles.Wall.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 10:
+            if self.division == 0:
+                Tiles.Curve1.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division == 1:
+                Tiles.Curve2.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division == 2:
+                Tiles.Curve3.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division == 3:
+                Tiles.Curve4.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 11:
+            Tiles.Drill_H_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 12:
+            Tiles.Drill_H_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 13:
+            Tiles.Drill_W_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 14:
+            Tiles.Drill_W_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 15:
+            Tiles.Bomb.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 16:
+            Tiles.Bomb.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.type == 17:
+            if self.division % 10 == 0:
+                Tiles.RButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            else:
+                Tiles.GButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if (self.division % 100) // 10 == 0:
+                Tiles.RButton_Bottom.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            else:
+                Tiles.GButton_Bottom.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if (self.division % 1000) // 100 == 0:
+                Tiles.RButton_Right.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            else:
+                Tiles.GButton_Right.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division // 1000 == 0:
+                Tiles.RButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            else:
+                Tiles.GButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
 
 # 키보드, 마우스 이벤트
 def handle_events():
     global MakingMap
-    global ViewGrid
-    global MouseX
-    global MouseY
-    global TileChoice
-    global TILESIZE
-    global MAPx25x25
-    global ExistShip
-    global ShipXY
-    global ExistExit
-    global ExitXY
+    global MouseX, MouseY
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             MakingMap = False
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-            MouseX, MouseY = event.x, (WINHEIGHT - 1) - event.y
-            # 선택 확인
-            if 900 <= MouseX and MouseX < 1008 and 0 <= MouseY and MouseY < 36:
-                TileChoice = 1
-            elif 972 <= MouseX and MouseX < 1008 and 36 <= MouseY and MouseY < 144:
-                TileChoice = 2
-            elif 900 <= MouseX and MouseX < 936 and 36 <= MouseY and MouseY < 72:
-                TileChoice = 3
-            elif 936 <= MouseX and MouseX < 972 and 36 <= MouseY and MouseY < 72:
-                TileChoice = 4
-            elif 900 <= MouseX and MouseX < 936 and 72 <= MouseY and MouseY < 108:
-                TileChoice = 5
-            elif 936 <= MouseX and MouseX < 972 and 72 <= MouseY and MouseY < 108:
-                TileChoice = 6
-            elif 900 <= MouseX and MouseX < 936 and 108 <= MouseY and MouseY < 144:
-                TileChoice = 7
-            elif 936 <= MouseX and MouseX < 972 and 108 <= MouseY and MouseY < 144:
-                TileChoice = 8
-            elif 900 <= MouseX and MouseX < 936 and 144 <= MouseY and MouseY < 180:
-                TileChoice = 9
-            elif 936 <= MouseX and MouseX < 972 and 144 <= MouseY and MouseY < 180:
-                TileChoice = 10
-            elif 972 <= MouseX and MouseX < 1008 and 144 <= MouseY and MouseY < 180:
-                TileChoice = 11
-            elif 900 <= MouseX and MouseX < 936 and 180 <= MouseY and MouseY < 216:
-                TileChoice = 12
-            elif 936 <= MouseX and MouseX < 972 and 180 <= MouseY and MouseY < 216:
-                TileChoice = 13
-            elif 972 <= MouseX and MouseX < 1008 and 180 <= MouseY and MouseY < 216:
-                TileChoice = 14
-            elif 900 <= MouseX and MouseX < 936 and 216 <= MouseY and MouseY < 252:
-                TileChoice = 15
-            elif 936 <= MouseX and MouseX < 972 and 216 <= MouseY and MouseY < 252:
-                TileChoice = 16
-            elif 972 <= MouseX and MouseX < 1008 and 216 <= MouseY and MouseY < 252:
-                TileChoice = 17
-            elif 900 <= MouseX and MouseX < 1008 and 252 <= MouseY and MouseY < 900:
-                TileChoice = 0
-            else:
-                etc_x = MouseX // TILESIZE
-                etc_y = MouseY // TILESIZE
-                if (TileChoice == 1) and (36 < MouseX) and (MouseX < 864):
-                    if MAPx25x25[etc_y][etc_x - 1] == 20 or MAPx25x25[etc_y][etc_x - 1] == 1 or MAPx25x25[etc_y][etc_x - 1] == 2:
-                        if MAPx25x25[etc_y - 2][etc_x - 1] == 20 or MAPx25x25[etc_y - 2][etc_x - 1] == 1 or  MAPx25x25[etc_y - 2][etc_x - 1] == 2:
-                            MAPx25x25[etc_y - 2][etc_x - 1] = 0
-                        if MAPx25x25[etc_y - 1][etc_x - 1] == 20 or MAPx25x25[etc_y - 1][etc_x - 1] == 1 or  MAPx25x25[etc_y - 1][etc_x - 1] == 2:
-                            MAPx25x25[etc_y - 1][etc_x - 1] = 0
-                        if MAPx25x25[etc_y + 1][etc_x - 1] == 20 or MAPx25x25[etc_y + 1][etc_x - 1] == 1 or  MAPx25x25[etc_y + 1][etc_x - 1] == 2:
-                            MAPx25x25[etc_y + 1][etc_x - 1] = 0
-                        if MAPx25x25[etc_y + 2][etc_x - 1] == 20 or MAPx25x25[etc_y + 2][etc_x - 1] == 1 or  MAPx25x25[etc_y + 2][etc_x - 1] == 2:
-                            MAPx25x25[etc_y + 2][etc_x - 1] = 0
-                        if MAPx25x25[etc_y][etc_x - 2] == 20 or MAPx25x25[etc_y][etc_x - 2] == 1 or  MAPx25x25[etc_y][etc_x - 2] == 2:
-                            MAPx25x25[etc_y][etc_x - 2] = 0
-                        if MAPx25x25[etc_y][etc_x - 3] == 20 or MAPx25x25[etc_y][etc_x - 3] == 1 or  MAPx25x25[etc_y][etc_x - 3] == 2:
-                            MAPx25x25[etc_y][etc_x - 3] = 0
-                    if MAPx25x25[etc_y][etc_x + 1] == 20 or MAPx25x25[etc_y][etc_x + 1] == 1 or MAPx25x25[etc_y][etc_x + 1] == 2:
-                        if MAPx25x25[etc_y - 2][etc_x + 1] == 20 or MAPx25x25[etc_y - 2][etc_x + 1] == 1 or  MAPx25x25[etc_y - 2][etc_x + 1] == 2:
-                            MAPx25x25[etc_y - 2][etc_x + 1] = 0
-                        if MAPx25x25[etc_y - 1][etc_x + 1] == 20 or MAPx25x25[etc_y - 1][etc_x + 1] == 1 or  MAPx25x25[etc_y - 1][etc_x + 1] == 2:
-                            MAPx25x25[etc_y - 1][etc_x + 1] = 0
-                        if MAPx25x25[etc_y + 1][etc_x + 1] == 20 or MAPx25x25[etc_y + 1][etc_x + 1] == 1 or  MAPx25x25[etc_y + 1][etc_x + 1] == 2:
-                            MAPx25x25[etc_y + 1][etc_x + 1] = 0
-                        if MAPx25x25[etc_y + 2][etc_x + 1] == 20 or MAPx25x25[etc_y + 2][etc_x + 1] == 1 or  MAPx25x25[etc_y + 2][etc_x + 1] == 2:
-                            MAPx25x25[etc_y + 2][etc_x + 1] = 0
-                        if MAPx25x25[etc_y][etc_x + 2] == 20 or MAPx25x25[etc_y][etc_x + 2] == 1 or  MAPx25x25[etc_y][etc_x + 2] == 2:
-                            MAPx25x25[etc_y][etc_x + 2] = 0
-                        if MAPx25x25[etc_y][etc_x + 3] == 20 or MAPx25x25[etc_y][etc_x + 3] == 1 or  MAPx25x25[etc_y][etc_x + 3] == 2:
-                            MAPx25x25[etc_y][etc_x + 3] = 0
-                    if MAPx25x25[etc_y][etc_x] == 20 or MAPx25x25[etc_y][etc_x] == 1 or MAPx25x25[etc_y][etc_x] == 2:
-                        if MAPx25x25[etc_y - 2][etc_x] == 20 or MAPx25x25[etc_y - 2][etc_x] == 1 or  MAPx25x25[etc_y - 2][etc_x] == 2:
-                            MAPx25x25[etc_y - 2][etc_x] = 0
-                        if MAPx25x25[etc_y - 1][etc_x] == 20 or MAPx25x25[etc_y - 1][etc_x] == 1 or  MAPx25x25[etc_y - 1][etc_x] == 2:
-                            MAPx25x25[etc_y - 1][etc_x] = 0
-                        if MAPx25x25[etc_y + 1][etc_x] == 20 or MAPx25x25[etc_y + 1][etc_x] == 1 or  MAPx25x25[etc_y + 1][etc_x] == 2:
-                            MAPx25x25[etc_y + 1][etc_x] = 0
-                        if MAPx25x25[etc_y + 2][etc_x] == 20 or MAPx25x25[etc_y + 2][etc_x] == 1 or  MAPx25x25[etc_y + 2][etc_x] == 2:
-                            MAPx25x25[etc_y + 2][etc_x] = 0
-                    MAPx25x25[etc_y][etc_x - 1] = 20
-                    MAPx25x25[etc_y][etc_x] = TileChoice
-                    MAPx25x25[etc_y][etc_x + 1] = 20
-                elif TileChoice == 2 and 0 < etc_y and etc_y < 24:
-                    if MAPx25x25[etc_y - 1][etc_x] == 20 or MAPx25x25[etc_y - 1][etc_x] == 1 or MAPx25x25[etc_y - 1][etc_x] == 2:
-                        if MAPx25x25[etc_y - 1][etc_x - 2] == 20 or MAPx25x25[etc_y - 1][etc_x - 2] == 1 or  MAPx25x25[etc_y - 1][etc_x - 2] == 2:
-                            MAPx25x25[etc_y -1][etc_x - 2] = 0
-                        if MAPx25x25[etc_y - 1][etc_x - 1] == 20 or MAPx25x25[etc_y - 1][etc_x - 1] == 1 or  MAPx25x25[etc_y - 1][etc_x - 1] == 2:
-                            MAPx25x25[etc_y - 1][etc_x - 1] = 0
-                        if MAPx25x25[etc_y - 1][etc_x + 1] == 20 or MAPx25x25[etc_y - 1][etc_x + 1] == 1 or  MAPx25x25[etc_y - 1][etc_x + 1] == 2:
-                            MAPx25x25[etc_y - 1][etc_x + 1] = 0
-                        if MAPx25x25[etc_y - 1][etc_x + 2] == 20 or MAPx25x25[etc_y - 1][etc_x + 2] == 1 or  MAPx25x25[etc_y - 1][etc_x + 2] == 2:
-                            MAPx25x25[etc_y - 1][etc_x + 2] = 0
-                        if MAPx25x25[etc_y - 2][etc_x] == 20 or MAPx25x25[etc_y - 2][etc_x] == 1 or  MAPx25x25[etc_y - 2][etc_x] == 2:
-                            MAPx25x25[etc_y - 2][etc_x] = 0
-                        if MAPx25x25[etc_y - 3][etc_x] == 20 or MAPx25x25[etc_y - 3][etc_x] == 1 or  MAPx25x25[etc_y - 3][etc_x] == 2:
-                            MAPx25x25[etc_y - 3][etc_x] = 0
-                    if MAPx25x25[etc_y + 1][etc_x] == 20 or MAPx25x25[etc_y + 1][etc_x] == 1 or MAPx25x25[etc_y + 1][etc_x] == 2:
-                        if MAPx25x25[etc_y + 1][etc_x - 2] == 20 or MAPx25x25[etc_y + 1][etc_x - 2] == 1 or  MAPx25x25[etc_y + 1][etc_x - 2] == 2:
-                            MAPx25x25[etc_y + 1][etc_x - 2] = 0
-                        if MAPx25x25[etc_y + 1][etc_x - 1] == 20 or MAPx25x25[etc_y + 1][etc_x - 1] == 1 or  MAPx25x25[etc_y + 1][etc_x - 1] == 2:
-                            MAPx25x25[etc_y + 1][etc_x - 1] = 0
-                        if MAPx25x25[etc_y + 1][etc_x + 1] == 20 or MAPx25x25[etc_y + 1][etc_x + 1] == 1 or  MAPx25x25[etc_y + 1][etc_x + 1] == 2:
-                            MAPx25x25[etc_y + 1][etc_x + 1] = 0
-                        if MAPx25x25[etc_y + 1][etc_x + 2] == 20 or MAPx25x25[etc_y + 1][etc_x + 2] == 1 or  MAPx25x25[etc_y + 1][etc_x + 2] == 2:
-                            MAPx25x25[etc_y + 1][etc_x + 2] = 0
-                        if MAPx25x25[etc_y + 2][etc_x] == 20 or MAPx25x25[etc_y + 2][etc_x] == 1 or  MAPx25x25[etc_y + 2][etc_x] == 2:
-                            MAPx25x25[etc_y + 2][etc_x] = 0
-                        if MAPx25x25[etc_y + 3][etc_x] == 20 or MAPx25x25[etc_y + 3][etc_x] == 1 or  MAPx25x25[etc_y + 3][etc_x] == 2:
-                            MAPx25x25[etc_y + 3][etc_x] = 0
-                    if MAPx25x25[etc_y][etc_x] == 20 or MAPx25x25[etc_y][etc_x] == 1 or MAPx25x25[etc_y][etc_x] == 2:
-                        if MAPx25x25[etc_y][etc_x - 2] == 20 or MAPx25x25[etc_y][etc_x - 2] == 1 or  MAPx25x25[etc_y][etc_x - 2] == 2:
-                            MAPx25x25[etc_y][etc_x - 2] = 0
-                        if MAPx25x25[etc_y][etc_x - 1] == 20 or MAPx25x25[etc_y][etc_x - 1] == 1 or  MAPx25x25[etc_y][etc_x - 1] == 2:
-                            MAPx25x25[etc_y][etc_x - 1] = 0
-                        if MAPx25x25[etc_y][etc_x + 1] == 20 or MAPx25x25[etc_y][etc_x + 1] == 1 or  MAPx25x25[etc_y][etc_x + 1] == 2:
-                            MAPx25x25[etc_y][etc_x + 1] = 0
-                        if MAPx25x25[etc_y][etc_x + 2] == 20 or MAPx25x25[etc_y][etc_x + 2] == 1 or  MAPx25x25[etc_y][etc_x + 2] == 2:
-                            MAPx25x25[etc_y][etc_x + 2] = 0
-                    MAPx25x25[etc_y - 1][etc_x] = 20
-                    MAPx25x25[etc_y][etc_x] = TileChoice
-                    MAPx25x25[etc_y + 1][etc_x] = 20
-                elif TileChoice == 17:
-                    if ExistShip == True:
-                        MAPx25x25[etc_y][etc_x] = TileChoice
-                        MAPx25x25[ShipXY[1]][ShipXY[0]] = 0
-                        ShipXY[0] = etc_x
-                        ShipXY[1] = etc_y
-                    else:
-                        MAPx25x25[etc_y][etc_x] = TileChoice
-                        ShipXY[0] = etc_x
-                        ShipXY[1] = etc_y
-                        ExistShip = True
-                elif TileChoice == 4:
-                    if ExistExit == True:
-                        MAPx25x25[etc_y][etc_x] = TileChoice
-                        MAPx25x25[ExitXY[1]][ExitXY[0]] = 0
-                        ExitXY[0] = etc_x
-                        ExitXY[1] = etc_y
-                    else:
-                        MAPx25x25[etc_y][etc_x] = TileChoice
-                        ExitXY[0] = etc_x
-                        ExitXY[1] = etc_y
-                        ExistExit = True
-                else:
-                    if etc_x == ShipXY[0] and etc_y == ShipXY[1]:
-                        ExistShip = False
-                    if etc_x == ExitXY[0] and etc_y == ExitXY[1]:
-                        ExistExit = False
-                    MAPx25x25[etc_y][etc_x] = TileChoice
+            MouseX, MouseY = event.x, (Define_File.WINHEIGHT - 1) - event.y
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_g:
-                if ViewGrid == True:
-                    ViewGrid = False
+                if grid.OnOff == True:
+                    grid.OnOff = False
                 else:
-                    ViewGrid = True
+                    grid.OnOff = True
             elif event.key == SDLK_ESCAPE:
                 MakingMap = False
 
-# 화면 그리기
-while(MakingMap):
-    handle_events()
-    clear_canvas()
-    stage1.draw(WINWIDTH / 2, WINHEIGHT / 2)
-    if ViewGrid == True:
-        grid.draw(WINWIDTH / 2, WINHEIGHT / 2)
-    # 팔레트 그리기
-    blbackground.draw(54 + WINWIDTH, WINHEIGHT / 2)
-    drill_width.draw(54 + WINWIDTH, 18)
-    drill_height.draw(90 + WINWIDTH, 90)
-    bomb.clip_draw(0, 0, TILESIZE, TILESIZE, 18 + WINWIDTH, (1 + 0.5) * TILESIZE)
-    exit_gate.draw(54 + WINWIDTH, 54)
-    curve1.draw(54 + WINWIDTH, 90)
-    curve2.draw(18 + WINWIDTH, 90)
-    curve3.draw(18 + WINWIDTH, 126)
-    curve4.draw(54 + WINWIDTH, 126)
-    portal_red.draw(18 + WINWIDTH, 162)
-    portal_blue.draw(54 + WINWIDTH, 162)
-    portal_green.draw(90 + WINWIDTH, 162)
-    portal_yellow.draw(18 + WINWIDTH, 198)
-    portal_purple.draw(54 + WINWIDTH, 198)
-    portal_pink.draw(90 + WINWIDTH, 198)
-    portal_skyblue.draw(18 + WINWIDTH, 234)
-    wall.draw(54 + WINWIDTH, 234)
-    ship.draw(90 + WINWIDTH, 234)
-    # 맵 그리기
-    index_x = 0
-    index_y = 0
-    while(index_y < 25):
-        index_x = 0
-        while(index_x < 25):
-            if MAPx25x25[index_y][index_x] == 1:
-                drill_width.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 2:
-                drill_height.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 3:
-                bomb.clip_draw(0, 0, TILESIZE, TILESIZE, (index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 4:
-                exit_gate.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 5:
-                curve2.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 6:
-                curve1.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 7:
-                curve3.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 8:
-                curve4.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 9:
-                portal_red.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 10:
-                portal_blue.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 11:
-                portal_green.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 12:
-                portal_yellow.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 13:
-                portal_purple.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 14:
-                portal_pink.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 15:
-                portal_skyblue.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 16:
-                wall.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            elif MAPx25x25[index_y][index_x] == 17:
-                ship.draw((index_x + 0.5) * TILESIZE, (index_y + 0.5) * TILESIZE)
-            index_x += 1
-        index_y += 1
-    update_canvas()
-    delay(0.1)
+# 메인 함수
+def main():
+    open_canvas(Define_File.WINWIDTH, Define_File.WINHEIGHT)
 
-# 클로스 캔버스
-close_canvas()
+    global MakingMap, grid, tiles
+    background = BackGround()
+    MakingMap = True
+    TileChoice = 0
+    grid = Grid.Grid()
+    status_board = Status_Board.Status_Board()
+    MouseX = 0
+    MouseY = 0
+    tiles = []
+
+    while MakingMap:
+        handle_events()
+
+        clear_canvas()
+        background.draw()
+        if grid.OnOff == True:
+            grid.draw()
+        for tile in tiles:
+            tile.draw()
+        status_board.draw()
+        update_canvas()
+
+    close_canvas()
+
+#초기화 함수
+def setup():
+    pass
+
+if __name__ == '__main__':
+    main()
+
 
