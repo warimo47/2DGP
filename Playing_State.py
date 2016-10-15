@@ -5,28 +5,26 @@ import Define_File
 import BackGround
 import Status_Board
 import Grid
-import Wall
-import Bomb
-import Exit_Gate
+import Tile
 
 # 초기화 코드
 name = "PlayingState"
-background = None
-status_board = None
-grid = None
-walls = None
-exit_gate = None
-ship = None
 
 # 게임 오브젝트 클래스 정의
 class Ship:
-    global wall
+    global tiles
     global exit_gate
+
     def __init__(self):
         self.image = load_image('resource\space_ship\space_ship0.png')
-        self.x, self.y = 12, 12
+        self.x, self.y = -1, -1
         self.direction = 0
         self.canmove = True
+        self.next_stage = False
+
+    def setxy(self, xx, yy):
+        self.x, self.y = xx, yy
+
     def update(self):
         if self.direction == 1:
             self.x = self.x + 1
@@ -36,25 +34,71 @@ class Ship:
             self.x = self.x - 1
         elif self.direction == 4:
             self.y = self.y + 1
+
     def collision_check(self):
-        for i in range(8):
-            if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
-                self.direction = 0
-            elif self.x == walls[i].x and self.y == walls[i].y:
-                if self.direction == 1:
-                    self.x = self.x - 1
-                elif self.direction == 2:
-                    self.y = self.y + 1
-                elif self.direction == 3:
-                    self.x = self.x + 1
-                elif self.direction == 4:
-                    self.y = self.y - 1
-                self.canmove = True
-                self.direction = 0
-            elif self.x == exit_gate.x and self.y == exit_gate.y:
-                self.direction = 0
+        if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
+            self.direction = 0
+            stage.StageNum -= 1
+            ship.next_stage = True
+        else:
+            for tile in tiles:
+                if self.x == tile.x and self.y == tile.y:
+                    if tile.type == 9:
+                        if self.direction == 1:
+                            self.x = self.x - 1
+                        elif self.direction == 2:
+                            self.y = self.y + 1
+                        elif self.direction == 3:
+                            self.x = self.x + 1
+                        elif self.direction == 4:
+                            self.y = self.y - 1
+                        self.canmove = True
+                        self.direction = 0
+                    if tile.type == 1:
+                        self.direction = 0
+                        self.next_stage = True
+                    if tile.type == 13 and tile.division < 361:
+                        if self.direction == 1:
+                            self.x = self.x - 1
+                        elif self.direction == 2:
+                            self.y = self.y + 1
+                        elif self.direction == 3:
+                            self.x = self.x + 1
+                        elif self.direction == 4:
+                            self.y = self.y - 1
+                        self.canmove = True
+                        self.direction = 0
+                        tile.division += 36
+
     def draw(self):
         self.image.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+
+class Stage:
+    global tiles
+    global ship
+
+    def __init__(self):
+        self.StageNum = 1
+        self.File = None
+
+    def load_stage(self):
+        self.filename = 'Stage\Stage' + str(self.StageNum) + '.txt'
+        self.File = open(self.filename, 'r')
+        self.tile_num = int(self.File.readline())
+        while(self.tile_num):
+            temp_type = int(self.File.readline())
+            temp_division = int(self.File.readline())
+            temp_x = int(self.File.readline())
+            temp_y = int(self.File.readline())
+            tiles.append(Tile.Tile(temp_type, temp_division, temp_x, temp_y))
+            self.tile_num -= 1
+        self.File.close()
+        for tile in tiles:
+            if tile.type == 0:
+                ship.setxy(tile.x, tile.y)
+                tiles.remove(tile)
+                break
+        self.StageNum += 1
 
 # 키보드, 마우스 이벤트
 def handle_events():
@@ -78,6 +122,9 @@ def handle_events():
                     ship.canmove = False
                 elif event.key == SDLK_ESCAPE:
                     Game_Framework.running = False
+                elif event.key == SDLK_SPACE:
+                    stage.StageNum -= 1
+                    ship.next_stage = True
             if event.key == SDLK_g:
                 if grid.OnOff == True:
                     grid.OnOff = False
@@ -85,21 +132,15 @@ def handle_events():
                     grid.OnOff = True
 
 def enter():
-    global background, status_board, grid, walls, exit_gate, ship
+    global background, status_board, grid, ship, stage, tiles
+
     background = BackGround.BackGround()
     status_board = Status_Board.Status_Board()
     grid = Grid.Grid()
-    walls = [Wall.Wall() for i in range(8)]
-    walls[0].x, walls[0].y = 9, 10
-    walls[1].x, walls[1].y = 10, 14
-    walls[2].x, walls[2].y = 11, 8
-    walls[3].x, walls[3].y = 12, 16
-    walls[4].x, walls[4].y = 13, 12
-    walls[5].x, walls[5].y = 14, 9
-    walls[6].x, walls[6].y = 15, 15
-    walls[7].x, walls[7].y = 16, 13
-    exit_gate = Exit_Gate.Exit_Gate()
     ship = Ship()
+    stage = Stage()
+    tiles = []
+    stage.load_stage()
     hide_cursor()
 
 def exit():
@@ -112,16 +153,24 @@ def resume():
     pass
 
 def update():
+    global tiles
+
     ship.update()
     ship.collision_check()
+    if (ship.next_stage == True):
+        ship.next_stage = False
+        tiles = []
+        stage.load_stage()
+        ship.canmove = True
 
 def draw():
+    global tiles
+
     clear_canvas()
     background.draw()
     grid.draw()
-    for i in range(8):
-        walls[i].draw()
-    exit_gate.draw()
+    for tile in tiles:
+        tile.draw()
     ship.draw()
     status_board.draw()
     update_canvas()
