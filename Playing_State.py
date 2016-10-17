@@ -26,6 +26,10 @@ class Ship:
         self.x, self.y = xx, yy
 
     def update(self):
+        global shipdraw
+        shipdraw = False
+        if self.next_stage == True:
+            shipdraw = True
         if self.direction == 1:
             self.x = self.x + 1
         elif self.direction == 2:
@@ -38,6 +42,9 @@ class Ship:
     def collision_check(self):
         if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
             self.direction = 0
+            status_board.life -= 1
+            if status_board.life < 0:
+                Game_Framework.change_state(Title_State)
             stage.StageNum -= 1
             ship.next_stage = True
         else:
@@ -123,6 +130,9 @@ def handle_events():
                 elif event.key == SDLK_ESCAPE:
                     Game_Framework.running = False
                 elif event.key == SDLK_SPACE:
+                    status_board.life -= 1
+                    if status_board.life < 0:
+                        Game_Framework.change_state(Title_State)
                     stage.StageNum -= 1
                     ship.next_stage = True
             if event.key == SDLK_g:
@@ -132,7 +142,7 @@ def handle_events():
                     grid.OnOff = True
 
 def enter():
-    global background, status_board, grid, ship, stage, tiles
+    global background, status_board, grid, ship, stage, tiles, shipdraw
 
     background = BackGround.BackGround()
     status_board = Status_Board.Status_Board()
@@ -142,6 +152,7 @@ def enter():
     tiles = []
     stage.load_stage()
     hide_cursor()
+    shipdraw = False
 
 def exit():
     pass
@@ -153,14 +164,21 @@ def resume():
     pass
 
 def update():
-    global tiles
+    global tiles, shipdraw, stage
 
     ship.update()
     ship.collision_check()
-    if (ship.next_stage == True):
+
+    if ship.next_stage == True and shipdraw == False:
         ship.next_stage = False
         tiles = []
         stage.load_stage()
+        ship.canmove = True
+    if shipdraw == True:
+        ship.next_stage = False
+        tiles = []
+        stage.load_stage()
+        delay(1.0)
         ship.canmove = True
 
 def draw():

@@ -3,6 +3,7 @@ import Define_File
 
 class BackGround:
     image = None
+    StageNum = 1
     def __init__(self):
         if BackGround.image == None:
             BackGround.image = load_image('resource\Map\stage1.png')
