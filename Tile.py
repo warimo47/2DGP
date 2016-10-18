@@ -91,13 +91,13 @@ class Tile:
 
     def update(self):
         if self.type == 13 and self.division > 0 and self.division < 361:
-            self.division += 36
+            self.division += 1
 
     def draw(self):
         if self.type == 0:
             Tile.Ship.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 1:
-            Tile.Exit_Gate.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            Tile.Exit_Gate.clip_draw(self.division * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 2:
             Tile.Portal_Red.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 3:
@@ -124,11 +124,17 @@ class Tile:
             if self.division == 4:
                 Tile.Curve4.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 11:
-            Tile.Drill_H_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division == 0:
+                Tile.Drill_H_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            else:
+                Tile.Drill_H_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 12:
-            Tile.Drill_W_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division == 0:
+                Tile.Drill_W_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            else:
+                Tile.Drill_W_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 13 and self.division < 361:
-            Tile.Bomb.clip_draw(self.division, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            Tile.Bomb.clip_draw((self.division // 36) * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 14:
             if self.division % 10 == 0:
                 Tile.RButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)

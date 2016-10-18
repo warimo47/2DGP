@@ -53,7 +53,7 @@ def all_clear():
 def select_tile():
     global MouseX, MouseY
     global TileChoice, TileDivision
-    TileChoice = 0
+    TileChoice = -1
     TileDivision = 0
     if 864 < MouseY and MouseY <= 900 and 900 < MouseX and MouseX <= 1008:
         save_file()
@@ -61,6 +61,8 @@ def select_tile():
         all_clear()
     if 252 < MouseY and MouseY <= 288 and 900 < MouseX and MouseX <= 936:
         TileChoice = 13
+    if 252 < MouseY and MouseY <= 288 and 936 < MouseX and MouseX <= 972:
+        TileChoice = 0
     if 216 < MouseY and MouseY <= 252 and 900 < MouseX and MouseX <= 936:
         TileChoice = 5
     if 216 < MouseY and MouseY <= 252 and 936 < MouseX and MouseX <= 972:
@@ -92,9 +94,10 @@ def select_tile():
         TileChoice = 10
         TileDivision = 3
     if 36 < MouseY and MouseY <= 72 and 900 < MouseX and MouseX <= 936:
-        TileChoice = 0
+        TileChoice = 1
     if 36 < MouseY and MouseY <= 72 and 936 < MouseX and MouseX <= 972:
         TileChoice = 1
+        TileDivision = 1
     if 36 < MouseY and MouseY <= 144 and 972 < MouseX and MouseX <= 1008:
         TileChoice = 11
     if 0 < MouseY and MouseY <= 36 and 900 < MouseX and MouseX <= 1008:
@@ -123,59 +126,73 @@ def input_tile():
                 tiles.remove(tile)
                 break
     elif TileChoice == 2:
-        portal_red_num += 1
-        if portal_red_num > 2:
+        portal_red_num  = 0
+        for tile in tiles:
+            if tile.type == 2:
+                portal_red_num += 1
+        if portal_red_num > 1:
             for tile in tiles:
                 if tile.type == 2:
-                    portal_red_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 3:
-        portal_blue_num += 1
-        if portal_blue_num > 2:
+        portal_blue_num = 0
+        for tile in tiles:
+            if tile.type == 3:
+                portal_blue_num += 1
+        if portal_blue_num > 1:
             for tile in tiles:
                 if tile.type == 3:
-                    portal_blue_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 4:
-        portal_green_num += 1
-        if portal_green_num > 2:
+        portal_green_num = 0
+        for tile in tiles:
+            if tile.type == 4:
+                portal_green_num += 1
+        if portal_green_num > 1:
             for tile in tiles:
                 if tile.type == 4:
-                    portal_green_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 5:
-        portal_yellow_num += 1
-        if portal_yellow_num > 2:
+        portal_yellow_num = 0
+        for tile in tiles:
+            if tile.type == 5:
+                portal_yellow_num += 1
+        if portal_yellow_num > 1:
             for tile in tiles:
                 if tile.type == 5:
-                    portal_yellow_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 6:
-        portal_purple_num += 1
-        if portal_purple_num > 2:
+        portal_purple_num = 0
+        for tile in tiles:
+            if tile.type == 6:
+                portal_purple_num += 1
+        if portal_purple_num > 1:
             for tile in tiles:
                 if tile.type == 6:
-                    portal_purple_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 7:
-        portal_pink_num += 1
-        if portal_pink_num > 2:
+        portal_pink_num = 0
+        for tile in tiles:
+            if tile.type == 7:
+                portal_pink_num += 1
+        if portal_pink_num > 1:
             for tile in tiles:
                 if tile.type == 7:
-                    portal_pink_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 8:
-        portal_skyblue_num += 1
-        if portal_skyblue_num > 2:
+        portal_skyblue_num = 0
+        for tile in tiles:
+            if tile.type == 8:
+                portal_skyblue_num += 1
+        if portal_skyblue_num > 1:
             for tile in tiles:
                 if tile.type == 8:
-                    portal_skyblue_num -= 1
                     tiles.remove(tile)
                     break
     elif TileChoice == 11:
@@ -286,8 +303,8 @@ def input_tile():
                 tiles.remove(tile)
                 isdelete = True
                 break
-
-    tiles.append(Tile.Tile(TileChoice, TileDivision, MouseX // 36, MouseY // 36))
+    if TileChoice != -1:
+        tiles.append(Tile.Tile(TileChoice, TileDivision, MouseX // 36, MouseY // 36))
 
 # 메인 함수
 def main():

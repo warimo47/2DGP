@@ -16,9 +16,10 @@ class Ship:
     global exit_gate
 
     def __init__(self):
-        self.image = load_image('resource\space_ship\space_ship0.png')
+        self.stop = load_image('resource\space_ship\space_ship0.png')
+        self.image = load_image('resource\space_ship\space_ship.png')
         self.x, self.y = -1, -1
-        self.direction = 0
+        self.direction = -1
         self.canmove = True
         self.next_stage = False
         self.frame = 0
@@ -31,18 +32,18 @@ class Ship:
         shipdraw = False
         if self.next_stage == True:
             shipdraw = True
-        if self.direction == 1:
-            self.x = self.x + 1
+        if self.direction == 0:
+            self.y += Define_File.MOVEDISTANCE
+        elif self.direction == 1:
+            self.x += Define_File.MOVEDISTANCE
         elif self.direction == 2:
-            self.y = self.y - 1
+            self.y -= Define_File.MOVEDISTANCE
         elif self.direction == 3:
-            self.x = self.x - 1
-        elif self.direction == 4:
-            self.y = self.y + 1
+            self.x -= Define_File.MOVEDISTANCE
 
     def collision_check(self):
         if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
-            self.direction = 0
+            self.direction = -1
             status_board.life -= 1
             if status_board.life < 0:
                 Game_Framework.change_state(Title_State)
@@ -50,36 +51,78 @@ class Ship:
             ship.next_stage = True
         else:
             for tile in tiles:
-                if self.x == tile.x and self.y == tile.y:
-                    if tile.type == 9:
-                        if self.direction == 1:
-                            self.x = self.x - 1
-                        elif self.direction == 2:
-                            self.y = self.y + 1
-                        elif self.direction == 3:
-                            self.x = self.x + 1
-                        elif self.direction == 4:
-                            self.y = self.y - 1
-                        self.canmove = True
-                        self.direction = 0
-                    if tile.type == 1:
-                        self.direction = 0
-                        self.next_stage = True
-                    if tile.type == 13 and tile.division < 361:
-                        if self.direction == 1:
-                            self.x = self.x - 1
-                        elif self.direction == 2:
-                            self.y = self.y + 1
-                        elif self.direction == 3:
-                            self.x = self.x + 1
-                        elif self.direction == 4:
-                            self.y = self.y - 1
-                        self.canmove = True
-                        self.direction = 0
+                if tile.type == 1:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if tile.division == 0:
+                            self.direction = -1
+                            self.next_stage = True
+                        else:
+                            self.ship_stop()
+                if tile.type == 2:
+                    pass
+                if tile.type == 3:
+                    pass
+                if tile.type == 4:
+                    pass
+                if tile.type == 5:
+                    pass
+                if tile.type == 6:
+                    pass
+                if tile.type == 7:
+                    pass
+                if tile.type == 8:
+                    pass
+                if tile.type == 9:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        self.ship_stop()
+                if tile.type == 10:
+                    pass
+                if tile.type == 11:
+                    if tile.division == 0:
+                        if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
+                            self.ship_stop()
+                        elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                tile.division = 1
+                        elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
+                            self.ship_stop()
+                    else:
+                        if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            self.ship_stop()
+                if tile.type == 12:
+                    if tile.division == 0:
+                        if self.x + 1 > tile.x + 1 and self.x - 1 < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            self.ship_stop()
+                        elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                tile.division = 1
+                        elif self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            self.ship_stop()
+                    else:
+                        if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            self.ship_stop()
+                if tile.type == 13 and tile.division < 361:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if tile.division > 0:
+                            tile.division = 361
+                        self.ship_stop()
                         tile.division += 36
 
+    def ship_stop(self):
+        if self.direction == 0:
+            self.y -= Define_File.MOVEDISTANCE
+        elif self.direction == 1:
+            self.x -= Define_File.MOVEDISTANCE
+        elif self.direction == 2:
+            self.y += Define_File.MOVEDISTANCE
+        elif self.direction == 3:
+            self.x += Define_File.MOVEDISTANCE
+        self.canmove = True
+        self.direction = -1
+
     def draw(self):
-        self.image.clip_draw(self.frame, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        if self.direction == -1:
+            self.stop.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        else:
+            self.image.clip_draw(self.frame * 70, self.direction * 70, 70, 70, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
 
 class Stage:
     global tiles
@@ -116,17 +159,17 @@ def handle_events():
             Game_Framework.running = False
         elif event.type == SDL_KEYDOWN:
             if ship.canmove == True:
-                if event.key == SDLK_RIGHT:
+                if event.key == SDLK_UP:
+                    ship.direction = 0
+                    ship.canmove = False
+                elif event.key == SDLK_RIGHT:
                     ship.direction = 1
-                    ship.canmove = False
-                elif event.key == SDLK_LEFT:
-                    ship.direction = 3
-                    ship.canmove = False
-                elif event.key == SDLK_UP:
-                    ship.direction = 4
                     ship.canmove = False
                 elif event.key == SDLK_DOWN:
                     ship.direction = 2
+                    ship.canmove = False
+                elif event.key == SDLK_LEFT:
+                    ship.direction = 3
                     ship.canmove = False
                 elif event.key == SDLK_ESCAPE:
                     Game_Framework.running = False
@@ -197,4 +240,4 @@ def draw():
     ship.draw()
     status_board.draw()
     update_canvas()
-    delay(0.05)
+    delay(0.01)
