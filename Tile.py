@@ -89,6 +89,10 @@ class Tile:
         if Tile.GButton_Left == None:
             Tile.GButton_Left = load_image('resource\Tiles\GButton_Left.png')
 
+    def update(self):
+        if self.type == 13 and self.division > 0 and self.division < 361:
+            self.division += 36
+
     def draw(self):
         if self.type == 0:
             Tile.Ship.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)

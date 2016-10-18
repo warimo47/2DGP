@@ -167,10 +167,12 @@ def resume():
     pass
 
 def update():
-    global tiles, shipdraw, stage
+    global tiles, shipdraw, stage, tiles
 
     ship.update()
     ship.collision_check()
+    for tile in tiles:
+        tile.update()
 
     if ship.next_stage == True and shipdraw == False:
         ship.next_stage = False
@@ -195,3 +197,4 @@ def draw():
     ship.draw()
     status_board.draw()
     update_canvas()
+    delay(0.05)
