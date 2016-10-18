@@ -21,6 +21,7 @@ class Ship:
         self.direction = 0
         self.canmove = True
         self.next_stage = False
+        self.frame = 0
 
     def setxy(self, xx, yy):
         self.x, self.y = xx, yy
@@ -78,7 +79,7 @@ class Ship:
                         tile.division += 36
 
     def draw(self):
-        self.image.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        self.image.clip_draw(self.frame, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
 
 class Stage:
     global tiles
@@ -134,6 +135,8 @@ def handle_events():
                     if status_board.life < 0:
                         Game_Framework.change_state(Title_State)
                     stage.StageNum -= 1
+                    ship.next_stage = True
+                elif event.key == SDLK_n:
                     ship.next_stage = True
             if event.key == SDLK_g:
                 if grid.OnOff == True:

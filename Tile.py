@@ -111,13 +111,13 @@ class Tile:
         if self.type == 9:
             Tile.Wall.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 10:
-            if self.division == 0:
-                Tile.Curve1.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             if self.division == 1:
-                Tile.Curve2.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+                Tile.Curve1.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             if self.division == 2:
-                Tile.Curve3.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+                Tile.Curve2.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             if self.division == 3:
+                Tile.Curve3.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            if self.division == 4:
                 Tile.Curve4.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 11:
             Tile.Drill_H_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
