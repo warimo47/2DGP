@@ -11,9 +11,17 @@ import Tile
 name = "PlayingState"
 
 # 게임 오브젝트 클래스 정의
-class Ship:
+class SpaceShip:
     global tiles
     global exit_gate
+
+    PIXEL_PER_METER = 1.0                                                   # 1.0 pixel 1.0 m
+    MOVE_SPEED_MPS = 18.0                                                   # Meter / Sec
+    MOVE_SPEED_PPS = (MOVE_SPEED_MPS * PIXEL_PER_METER)
+
+    TIME_PER_ACTION = 0.125
+    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+    FRAMES_PER_ACTION = 4
 
     def __init__(self):
         self.stop = load_image('resource\space_ship\space_ship0.png')
@@ -23,23 +31,27 @@ class Ship:
         self.canmove = True
         self.next_stage = False
         self.frame = 0
+        self.total_frames = 0.0
 
     def setxy(self, xx, yy):
         self.x, self.y = xx, yy
 
-    def update(self):
+    def update(self, frame_time):
         global shipdraw
         shipdraw = False
+        distance = SpaceShip.MOVE_SPEED_PPS * frame_time
+        self.total_frames += SpaceShip.FRAMES_PER_ACTION * SpaceShip.ACTION_PER_TIME * frame_time
+        self.frame = int(self.total_frames) % 4
         if self.next_stage == True:
             shipdraw = True
         if self.direction == 0:
-            self.y += Define_File.MOVEDISTANCE
+            self.y += distance
         elif self.direction == 1:
-            self.x += Define_File.MOVEDISTANCE
+            self.x += distance
         elif self.direction == 2:
-            self.y -= Define_File.MOVEDISTANCE
+            self.y -= distance
         elif self.direction == 3:
-            self.x -= Define_File.MOVEDISTANCE
+            self.x -= distance
 
     def collision_check(self):
         if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
@@ -48,7 +60,7 @@ class Ship:
             if status_board.life < 0:
                 Game_Framework.change_state(Title_State)
             stage.StageNum -= 1
-            ship.next_stage = True
+            spaceship.next_stage = True
         else:
             for tile in tiles:
                 if tile.type == 1:
@@ -74,47 +86,47 @@ class Ship:
                     pass
                 if tile.type == 9:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        self.ship_stop()
+                        self.ship_stop(tile.x, tile.y)
                 if tile.type == 10:
                     pass
                 if tile.type == 11:
                     if tile.division == 0:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                         elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 tile.division = 1
                         elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                     else:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                 if tile.type == 12:
                     if tile.division == 0:
                         if self.x + 1 > tile.x + 1 and self.x - 1 < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                         elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 tile.division = 1
                         elif self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                     else:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                 if tile.type == 13 and tile.division < 361:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division > 0:
                             tile.division = 361
-                        self.ship_stop()
+                        self.ship_stop(tile.x, tile.y)
                         tile.division += 36
 
-    def ship_stop(self):
+    def ship_stop(self, tilex, tiley):
         if self.direction == 0:
-            self.y -= Define_File.MOVEDISTANCE
+            self.y = tiley - 1
         elif self.direction == 1:
-            self.x -= Define_File.MOVEDISTANCE
+            self.x = tilex - 1
         elif self.direction == 2:
-            self.y += Define_File.MOVEDISTANCE
+            self.y = tiley + 1
         elif self.direction == 3:
-            self.x += Define_File.MOVEDISTANCE
+            self.x = tilex + 1
         self.canmove = True
         self.direction = -1
 
@@ -126,7 +138,7 @@ class Ship:
 
 class Stage:
     global tiles
-    global ship
+    global spaceship
 
     def __init__(self):
         self.StageNum = 1
@@ -146,7 +158,7 @@ class Stage:
         self.File.close()
         for tile in tiles:
             if tile.type == 0:
-                ship.setxy(tile.x, tile.y)
+                spaceship.setxy(tile.x, tile.y)
                 tiles.remove(tile)
                 break
         self.StageNum += 1
@@ -158,19 +170,19 @@ def handle_events():
         if event.type == SDL_QUIT:
             Game_Framework.running = False
         elif event.type == SDL_KEYDOWN:
-            if ship.canmove == True:
+            if spaceship.canmove == True:
                 if event.key == SDLK_UP:
-                    ship.direction = 0
-                    ship.canmove = False
+                    spaceship.direction = 0
+                    spaceship.canmove = False
                 elif event.key == SDLK_RIGHT:
-                    ship.direction = 1
-                    ship.canmove = False
+                    spaceship.direction = 1
+                    spaceship.canmove = False
                 elif event.key == SDLK_DOWN:
-                    ship.direction = 2
-                    ship.canmove = False
+                    spaceship.direction = 2
+                    spaceship.canmove = False
                 elif event.key == SDLK_LEFT:
-                    ship.direction = 3
-                    ship.canmove = False
+                    spaceship.direction = 3
+                    spaceship.canmove = False
                 elif event.key == SDLK_ESCAPE:
                     Game_Framework.running = False
                 elif event.key == SDLK_SPACE:
@@ -178,22 +190,31 @@ def handle_events():
                     if status_board.life < 0:
                         Game_Framework.change_state(Title_State)
                     stage.StageNum -= 1
-                    ship.next_stage = True
+                    spaceship.next_stage = True
                 elif event.key == SDLK_n:
-                    ship.next_stage = True
+                    spaceship.next_stage = True
             if event.key == SDLK_g:
                 if grid.OnOff == True:
                     grid.OnOff = False
                 else:
                     grid.OnOff = True
 
+def get_frame_time():
+    global current_time
+
+    frame_time = get_time() - current_time
+    current_time += frame_time
+    return frame_time
+
 def enter():
-    global background, status_board, grid, ship, stage, tiles, shipdraw
+    global background, status_board, grid, spaceship, stage, tiles, shipdraw, current_time
+
+    current_time = get_time()
 
     background = BackGround.BackGround()
     status_board = Status_Board.Status_Board()
     grid = Grid.Grid()
-    ship = Ship()
+    spaceship = SpaceShip()
     stage = Stage()
     tiles = []
     stage.load_stage()
@@ -212,22 +233,23 @@ def resume():
 def update():
     global tiles, shipdraw, stage, tiles
 
-    ship.update()
-    ship.collision_check()
+    frame_time = get_frame_time()
+    spaceship.update(frame_time)
+    spaceship.collision_check()
     for tile in tiles:
         tile.update()
 
-    if ship.next_stage == True and shipdraw == False:
-        ship.next_stage = False
+    if spaceship.next_stage == True and shipdraw == False:
+        spaceship.next_stage = False
         tiles = []
         stage.load_stage()
-        ship.canmove = True
+        spaceship.canmove = True
     if shipdraw == True:
-        ship.next_stage = False
+        spaceship.next_stage = False
         tiles = []
         stage.load_stage()
         delay(1.0)
-        ship.canmove = True
+        spaceship.canmove = True
 
 def draw():
     global tiles
@@ -237,7 +259,7 @@ def draw():
     grid.draw()
     for tile in tiles:
         tile.draw()
-    ship.draw()
+    spaceship.draw()
     status_board.draw()
     update_canvas()
     delay(0.01)
