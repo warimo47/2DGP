@@ -34,6 +34,7 @@ class Tile:
         self.x, self.y = mx, my
         self.type = type_num
         self.division = _division
+        Tile.gate_on = True
         if Tile.Ship == None:
             Tile.Ship = load_image('resource\space_ship\space_ship0.png')
         if Tile.Exit_Gate == None:
@@ -90,8 +91,11 @@ class Tile:
             Tile.GButton_Left = load_image('resource\Tiles\GButton_Left.png')
 
     def update(self):
-        if self.type == 13 and self.division > 0 and self.division < 361:
-            self.division += 1
+        if self.type == 13:
+            if self.division < 361:
+                Tile.gate_on = False
+                if self.division > 0:
+                    self.division += 1
 
     def draw(self):
         if self.type == 0:

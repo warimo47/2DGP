@@ -1,4 +1,5 @@
 from pico2d import *
+import json
 import Game_Framework
 import Title_State
 import Define_File
@@ -67,9 +68,10 @@ class SpaceShip:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division == 0:
                             self.direction = -1
+                            status_board.stagenum += 1
                             self.next_stage = True
                         else:
-                            self.ship_stop()
+                            self.ship_stop(tile.x, tile.y)
                 if tile.type == 2:
                     pass
                 if tile.type == 3:
@@ -146,21 +148,17 @@ class Stage:
 
     def load_stage(self):
         self.filename = 'Stage\Stage' + str(self.StageNum) + '.txt'
-        self.File = open(self.filename, 'r')
-        self.tile_num = int(self.File.readline())
-        while(self.tile_num):
-            temp_type = int(self.File.readline())
-            temp_division = int(self.File.readline())
-            temp_x = int(self.File.readline())
-            temp_y = int(self.File.readline())
-            tiles.append(Tile.Tile(temp_type, temp_division, temp_x, temp_y))
-            self.tile_num -= 1
-        self.File.close()
-        for tile in tiles:
-            if tile.type == 0:
-                spaceship.setxy(tile.x, tile.y)
-                tiles.remove(tile)
-                break
+        self.stage_data_file = open(self.filename, 'r')
+        self.stage_data_text = self.stage_data_file.read()
+        self.stage_data = json.loads(self.stage_data_text)
+        for number in self.stage_data:
+            if self.stage_data[number]['Tile_Type'] == 0:
+                spaceship.setxy(self.stage_data[number]['x'], self.stage_data[number]['y'])
+            else:
+                NewTile = Tile.Tile(self.stage_data[number]['Tile_Type'], self.stage_data[number]['Division'],
+                                    self.stage_data[number]['x'], self.stage_data[number]['y'])
+                tiles.append(NewTile)
+        self.stage_data_file.close()
         self.StageNum += 1
 
 # 키보드, 마우스 이벤트
@@ -192,6 +190,7 @@ def handle_events():
                     stage.StageNum -= 1
                     spaceship.next_stage = True
                 elif event.key == SDLK_n:
+                    status_board.stagenum += 1
                     spaceship.next_stage = True
             if event.key == SDLK_g:
                 if grid.OnOff == True:
@@ -236,8 +235,13 @@ def update():
     frame_time = get_frame_time()
     spaceship.update(frame_time)
     spaceship.collision_check()
+    Tile.Tile.gate_on = True
     for tile in tiles:
         tile.update()
+    if Tile.Tile.gate_on == True:
+        for tile in tiles:
+            if tile.type == 1:
+                tile.division = 0
 
     if spaceship.next_stage == True and shipdraw == False:
         spaceship.next_stage = False

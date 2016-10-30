@@ -4,6 +4,7 @@ import Define_File
 class Status_Board:
     def __init__(self):
         self.life = 2
+        self.stagenum = 1
         self.image = load_image('resource\Status\StatusBoard.png')
         self.number0 = load_image('resource\Status\\Number0.png')
         self.number1 = load_image('resource\Status\\Number1.png')
@@ -22,3 +23,6 @@ class Status_Board:
         if self.life // 10 != 0:
             self.numbers[self.life // 10].draw(954, 882)
         self.numbers[self.life % 10].draw(990, 882)
+        if self.stagenum // 10 != 0:
+            self.numbers[self.stagenum // 10].draw(18, 882)
+        self.numbers[self.stagenum % 10].draw(36, 882)

@@ -1,137 +1,36 @@
-34
-0
-0
-6
-12
-9
-0
-7
-13
-9
-0
-8
-13
-9
-0
-9
-13
-9
-0
-10
-13
-9
-0
-7
-11
-9
-0
-8
-11
-9
-0
-9
-11
-9
-0
-10
-11
-9
-0
-11
-15
-9
-0
-11
-9
-9
-0
-12
-8
-9
-0
-13
-8
-9
-0
-14
-8
-9
-0
-15
-9
-9
-0
-12
-16
-9
-0
-13
-16
-9
-0
-14
-16
-9
-0
-15
-15
-9
-0
-15
-13
-9
-0
-15
-12
-9
-0
-15
-11
-9
-0
-17
-14
-9
-0
-17
-10
-9
-0
-19
-12
-13
-0
-8
-12
-13
-0
-9
-12
-13
-0
-10
-12
-13
-0
-13
-12
-13
-0
-14
-12
-13
-0
-16
-13
-13
-0
-16
-12
-13
-0
-16
-11
-1
-0
-18
-12
+{
+"1" : {"Tile_Type" : 0, "Division" : 0, "x" : 6, "y" : 12},
+"2" : {"Tile_Type" : 1, "Division" : 0, "x" : 18, "y" : 12},
+"3" : {"Tile_Type" : 9, "Division" : 0, "x" : 7, "y" : 11},
+"4" : {"Tile_Type" : 9, "Division" : 0, "x" : 7, "y" : 13},
+"5" : {"Tile_Type" : 9, "Division" : 0, "x" : 8, "y" : 11},
+"6" : {"Tile_Type" : 9, "Division" : 0, "x" : 8, "y" : 13},
+"7" : {"Tile_Type" : 9, "Division" : 0, "x" : 9, "y" : 11},
+"8" : {"Tile_Type" : 9, "Division" : 0, "x" : 9, "y" : 13},
+"9" : {"Tile_Type" : 9, "Division" : 0, "x" : 10, "y" : 11},
+"10" : {"Tile_Type" : 9, "Division" : 0, "x" : 10, "y" : 13},
+"11" : {"Tile_Type" : 9, "Division" : 0, "x" : 11, "y" : 9},
+"12" : {"Tile_Type" : 9, "Division" : 0, "x" : 11, "y" : 15},
+"13" : {"Tile_Type" : 9, "Division" : 0, "x" : 12, "y" : 8},
+"14" : {"Tile_Type" : 9, "Division" : 0, "x" : 12, "y" : 16},
+"15" : {"Tile_Type" : 9, "Division" : 0, "x" : 13, "y" : 8},
+"16" : {"Tile_Type" : 9, "Division" : 0, "x" : 13, "y" : 16},
+"17" : {"Tile_Type" : 9, "Division" : 0, "x" : 14, "y" : 8},
+"18" : {"Tile_Type" : 9, "Division" : 0, "x" : 14, "y" : 16},
+"19" : {"Tile_Type" : 9, "Division" : 0, "x" : 15, "y" : 9},
+"20" : {"Tile_Type" : 9, "Division" : 0, "x" : 15, "y" : 11},
+"21" : {"Tile_Type" : 9, "Division" : 0, "x" : 15, "y" : 12},
+"22" : {"Tile_Type" : 9, "Division" : 0, "x" : 15, "y" : 13},
+"23" : {"Tile_Type" : 9, "Division" : 0, "x" : 15, "y" : 15},
+"24" : {"Tile_Type" : 9, "Division" : 0, "x" : 17, "y" : 10},
+"25" : {"Tile_Type" : 9, "Division" : 0, "x" : 17, "y" : 14},
+"26" : {"Tile_Type" : 9, "Division" : 0, "x" : 19, "y" : 12},
+"27" : {"Tile_Type" : 13, "Division" : 0, "x" : 8, "y" : 12},
+"28" : {"Tile_Type" : 13, "Division" : 0, "x" : 9, "y" : 12},
+"29" : {"Tile_Type" : 13, "Division" : 0, "x" : 10, "y" : 12},
+"30" : {"Tile_Type" : 13, "Division" : 0, "x" : 13, "y" : 12},
+"31" : {"Tile_Type" : 13, "Division" : 0, "x" : 14, "y" : 12},
+"32" : {"Tile_Type" : 13, "Division" : 0, "x" : 16, "y" : 11},
+"33" : {"Tile_Type" : 13, "Division" : 0, "x" : 16, "y" : 12},
+"34" : {"Tile_Type" : 13, "Division" : 0, "x" : 16, "y" : 13}
+}
