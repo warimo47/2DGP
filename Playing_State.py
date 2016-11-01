@@ -79,7 +79,11 @@ class SpaceShip:
                 if tile.type == 4:
                     pass
                 if tile.type == 5:
-                    pass
+                    if self.x + 0.2 > tile.x and self.x - 0.2 < tile.x and self.y + 0.2 > tile.y and self.y - 0.2 < tile.y:
+                        if tile.division == 1:
+                            pass
+                        elif tile.division == 2:
+                            pass
                 if tile.type == 6:
                     pass
                 if tile.type == 7:
@@ -90,7 +94,43 @@ class SpaceShip:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         self.ship_stop(tile.x, tile.y)
                 if tile.type == 10:
-                    pass
+                    if self.x + 0.2 > tile.x and self.x - 0.2 < tile.x and self.y + 0.2 > tile.y and self.y - 0.2 < tile.y:
+                        if tile.division == 1:
+                            if self.direction == 1:
+                                self.direction = 0
+                                self.x = tile.x
+                                self.y = tile.y
+                            elif self.direction == 2:
+                                self.direction = 3
+                                self.x = tile.x
+                                self.y = tile.y
+                        elif tile.division == 2:
+                            if self.direction == 2:
+                                self.direction = 1
+                                self.x = tile.x
+                                self.y = tile.y
+                            elif self.direction == 3:
+                                self.direction = 0
+                                self.x = tile.x
+                                self.y = tile.y
+                        elif tile.division == 3:
+                            if self.direction == 3:
+                                self.direction = 2
+                                self.x = tile.x
+                                self.y = tile.y
+                            elif self.direction == 0:
+                                self.direction = 1
+                                self.x = tile.x
+                                self.y = tile.y
+                        elif tile.division == 4:
+                            if self.direction == 0:
+                                self.direction = 3
+                                self.x = tile.x
+                                self.y = tile.y
+                            elif self.direction == 1:
+                                self.direction = 2
+                                self.x = tile.x
+                                self.y = tile.y
                 if tile.type == 11:
                     if tile.division == 0:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
