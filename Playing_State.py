@@ -72,7 +72,7 @@ class SpaceShip:
                             self.next_stage = True
                         else:
                             self.ship_stop(tile.x, tile.y)
-                if tile.type == 2:
+                elif tile.type == 2:
                     if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
                         if tile.division == 1:
                             for othertile in tiles:
@@ -96,7 +96,7 @@ class SpaceShip:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
                                     elif self.direction == 3:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
-                if tile.type == 3:
+                elif tile.type == 3:
                     if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
                         if tile.division == 1:
                             for othertile in tiles:
@@ -120,7 +120,7 @@ class SpaceShip:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
                                     elif self.direction == 3:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
-                if tile.type == 4:
+                elif tile.type == 4:
                     if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
                         if tile.division == 1:
                             for othertile in tiles:
@@ -144,7 +144,7 @@ class SpaceShip:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
                                     elif self.direction == 3:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
-                if tile.type == 5:
+                elif tile.type == 5:
                     if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
                         if tile.division == 1:
                             for othertile in tiles:
@@ -168,16 +168,16 @@ class SpaceShip:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
                                     elif self.direction == 3:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
-                if tile.type == 6:
+                elif tile.type == 6:
                     pass
-                if tile.type == 7:
+                elif tile.type == 7:
                     pass
-                if tile.type == 8:
+                elif tile.type == 8:
                     pass
-                if tile.type == 9:
+                elif tile.type == 9:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         self.ship_stop(tile.x, tile.y)
-                if tile.type == 10:
+                elif tile.type == 10:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division == 1:
                             if self.direction == 1:
@@ -188,6 +188,8 @@ class SpaceShip:
                                 self.direction = 3
                                 self.x = tile.x
                                 self.y = tile.y
+                            else:
+                                self.ship_stop(tile.x, tile.y)
                         elif tile.division == 2:
                             if self.direction == 2:
                                 self.direction = 1
@@ -197,6 +199,8 @@ class SpaceShip:
                                 self.direction = 0
                                 self.x = tile.x
                                 self.y = tile.y
+                            else:
+                                self.ship_stop(tile.x, tile.y)
                         elif tile.division == 3:
                             if self.direction == 3:
                                 self.direction = 2
@@ -206,6 +210,8 @@ class SpaceShip:
                                 self.direction = 1
                                 self.x = tile.x
                                 self.y = tile.y
+                            else:
+                                self.ship_stop(tile.x, tile.y)
                         elif tile.division == 4:
                             if self.direction == 0:
                                 self.direction = 3
@@ -215,7 +221,9 @@ class SpaceShip:
                                 self.direction = 2
                                 self.x = tile.x
                                 self.y = tile.y
-                if tile.type == 11:
+                            else:
+                                self.ship_stop(tile.x, tile.y)
+                elif tile.type == 11:
                     if tile.division == 0:
                         if self.direction == 0 or self.direction == 2:
                             if self.y + 1 > tile.y and self.y - 1 < tile.y:
@@ -229,7 +237,7 @@ class SpaceShip:
                     elif tile.division == 1:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x, tile.y)
-                if tile.type == 12:
+                elif tile.type == 12:
                     if tile.division == 0:
                         if self.direction == 0 or self.direction == 2:
                             if self.x > tile.x - 1 and self.x < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
@@ -243,12 +251,24 @@ class SpaceShip:
                     elif tile.division == 1:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x, tile.y)
-                if tile.type == 13 and tile.division < 361:
+                elif tile.type == 13 and tile.division < 361:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division > 0:
                             tile.division = 361
                         self.ship_stop(tile.x, tile.y)
                         tile.division += 36
+                elif tile.type == 14:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if self.direction == 0:
+                            tile.division += 1
+                        elif self.direction == 1:
+                            tile.division += 10
+                        elif self.direction == 2:
+                            tile.division += 100
+                        elif self.direction == 3:
+                            tile.division += 1000
+                        self.ship_stop(tile.x, tile.y)
+
 
     def ship_stop(self, tilex, tiley):
         if self.direction == 0:

@@ -140,19 +140,19 @@ class Tile:
         if self.type == 13 and self.division < 361:
             Tile.Bomb.clip_draw((self.division // 36) * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         if self.type == 14:
-            if self.division % 10 == 0:
+            if (self.division % 100) // 10 == 0:
                 Tile.RButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.GButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-            if (self.division % 100) // 10 == 0:
+            if self.division % 10 == 0:
                 Tile.RButton_Bottom.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.GButton_Bottom.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-            if (self.division % 1000) // 100 == 0:
+            if self.division // 1000 == 0:
                 Tile.RButton_Right.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.GButton_Right.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-            if self.division // 1000 == 0:
+            if (self.division % 1000) // 100 == 0:
                 Tile.RButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.GButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
