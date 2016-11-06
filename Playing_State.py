@@ -169,11 +169,77 @@ class SpaceShip:
                                     elif self.direction == 3:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                 elif tile.type == 6:
-                    pass
+                    if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
+                        if tile.division == 1:
+                            for othertile in tiles:
+                                if othertile.type == 6 and othertile.division == 2:
+                                    if self.direction == 0:
+                                        self.x, self.y = othertile.x, othertile.y + 0.5
+                                    elif self.direction == 1:
+                                        self.x, self.y = othertile.x + 0.5, othertile.y
+                                    elif self.direction == 2:
+                                        self.x, self.y = othertile.x, othertile.y - 0.5
+                                    elif self.direction == 3:
+                                        self.x, self.y = othertile.x - 0.5, othertile.y
+                        elif tile.division == 2:
+                            for othertile in tiles:
+                                if othertile.type == 6 and othertile.division == 1:
+                                    if self.direction == 0:
+                                        self.x, self.y = othertile.x, othertile.y + 0.5
+                                    elif self.direction == 1:
+                                        self.x, self.y = othertile.x + 0.5, othertile.y
+                                    elif self.direction == 2:
+                                        self.x, self.y = othertile.x, othertile.y - 0.5
+                                    elif self.direction == 3:
+                                        self.x, self.y = othertile.x - 0.5, othertile.y
                 elif tile.type == 7:
-                    pass
+                    if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
+                        if tile.division == 1:
+                            for othertile in tiles:
+                                if othertile.type == 7 and othertile.division == 2:
+                                    if self.direction == 0:
+                                        self.x, self.y = othertile.x, othertile.y + 0.5
+                                    elif self.direction == 1:
+                                        self.x, self.y = othertile.x + 0.5, othertile.y
+                                    elif self.direction == 2:
+                                        self.x, self.y = othertile.x, othertile.y - 0.5
+                                    elif self.direction == 3:
+                                        self.x, self.y = othertile.x - 0.5, othertile.y
+                        elif tile.division == 2:
+                            for othertile in tiles:
+                                if othertile.type == 7 and othertile.division == 1:
+                                    if self.direction == 0:
+                                        self.x, self.y = othertile.x, othertile.y + 0.5
+                                    elif self.direction == 1:
+                                        self.x, self.y = othertile.x + 0.5, othertile.y
+                                    elif self.direction == 2:
+                                        self.x, self.y = othertile.x, othertile.y - 0.5
+                                    elif self.direction == 3:
+                                        self.x, self.y = othertile.x - 0.5, othertile.y
                 elif tile.type == 8:
-                    pass
+                    if self.x + 0.5 > tile.x and self.x - 0.5 < tile.x and self.y + 0.5 > tile.y and self.y - 0.5 < tile.y:
+                        if tile.division == 1:
+                            for othertile in tiles:
+                                if othertile.type == 8 and othertile.division == 2:
+                                    if self.direction == 0:
+                                        self.x, self.y = othertile.x, othertile.y + 0.5
+                                    elif self.direction == 1:
+                                        self.x, self.y = othertile.x + 0.5, othertile.y
+                                    elif self.direction == 2:
+                                        self.x, self.y = othertile.x, othertile.y - 0.5
+                                    elif self.direction == 3:
+                                        self.x, self.y = othertile.x - 0.5, othertile.y
+                        elif tile.division == 2:
+                            for othertile in tiles:
+                                if othertile.type == 8 and othertile.division == 1:
+                                    if self.direction == 0:
+                                        self.x, self.y = othertile.x, othertile.y + 0.5
+                                    elif self.direction == 1:
+                                        self.x, self.y = othertile.x + 0.5, othertile.y
+                                    elif self.direction == 2:
+                                        self.x, self.y = othertile.x, othertile.y - 0.5
+                                    elif self.direction == 3:
+                                        self.x, self.y = othertile.x - 0.5, othertile.y
                 elif tile.type == 9:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         self.ship_stop(tile.x, tile.y)

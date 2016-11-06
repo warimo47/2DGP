@@ -1,125 +1,32 @@
-31
-9
-0
-16
-4
-9
-0
-14
-4
-9
-0
-13
-5
-9
-0
-17
-5
-9
-0
-17
-6
-9
-0
-16
-8
-9
-0
-12
-7
-9
-0
-9
-6
-9
-0
-7
-7
-14
-0
-10
-8
-9
-0
-18
-9
-9
-0
-19
-10
-9
-0
-20
-12
-9
-0
-20
-13
-9
-0
-21
-15
-14
-0
-14
-11
-14
-0
-17
-14
-9
-0
-15
-15
-9
-0
-16
-17
-9
-0
-19
-18
-0
-0
-12
-10
-9
-0
-9
-12
-9
-0
-6
-13
-9
-0
-7
-15
-9
-0
-5
-17
-9
-0
-6
-19
-9
-0
-8
-18
-9
-0
-11
-16
-14
-0
-10
-14
-14
-0
-1
-0
-1
-0
-23
-14
+{
+"1" : {"Tile_Type" : 0, "Division" : 0, "x" : 13, "y" : 11},
+"2" : {"Tile_Type" : 1, "Division" : 1, "x" : 23, "y" : 15},
+"3" : {"Tile_Type" : 9, "Division" : 0, "x" : 5, "y" : 18},
+"4" : {"Tile_Type" : 9, "Division" : 0, "x" : 6, "y" : 14},
+"5" : {"Tile_Type" : 9, "Division" : 0, "x" : 6, "y" : 20},
+"6" : {"Tile_Type" : 9, "Division" : 0, "x" : 7, "y" : 8},
+"7" : {"Tile_Type" : 9, "Division" : 0, "x" : 7, "y" : 16},
+"8" : {"Tile_Type" : 9, "Division" : 0, "x" : 8, "y" : 19},
+"9" : {"Tile_Type" : 9, "Division" : 0, "x" : 9, "y" : 7},
+"10" : {"Tile_Type" : 9, "Division" : 0, "x" : 9, "y" : 13},
+"11" : {"Tile_Type" : 9, "Division" : 0, "x" : 11, "y" : 17},
+"12" : {"Tile_Type" : 9, "Division" : 0, "x" : 12, "y" : 8},
+"13" : {"Tile_Type" : 9, "Division" : 0, "x" : 13, "y" : 6},
+"14" : {"Tile_Type" : 9, "Division" : 0, "x" : 14, "y" : 5},
+"15" : {"Tile_Type" : 9, "Division" : 0, "x" : 15, "y" : 16},
+"16" : {"Tile_Type" : 9, "Division" : 0, "x" : 16, "y" : 5},
+"17" : {"Tile_Type" : 9, "Division" : 0, "x" : 16, "y" : 9},
+"18" : {"Tile_Type" : 9, "Division" : 0, "x" : 16, "y" : 18},
+"19" : {"Tile_Type" : 9, "Division" : 0, "x" : 17, "y" : 6},
+"20" : {"Tile_Type" : 9, "Division" : 0, "x" : 17, "y" : 7},
+"21" : {"Tile_Type" : 9, "Division" : 0, "x" : 18, "y" : 10},
+"22" : {"Tile_Type" : 9, "Division" : 0, "x" : 19, "y" : 11},
+"23" : {"Tile_Type" : 9, "Division" : 0, "x" : 19, "y" : 19},
+"24" : {"Tile_Type" : 9, "Division" : 0, "x" : 20, "y" : 13},
+"25" : {"Tile_Type" : 9, "Division" : 0, "x" : 20, "y" : 14},
+"26" : {"Tile_Type" : 9, "Division" : 0, "x" : 21, "y" : 16},
+"27" : {"Tile_Type" : 14, "Division" : 0, "x" : 10, "y" : 9},
+"28" : {"Tile_Type" : 14, "Division" : 0, "x" : 10, "y" : 15},
+"29" : {"Tile_Type" : 14, "Division" : 0, "x" : 14, "y" : 12},
+"30" : {"Tile_Type" : 14, "Division" : 0, "x" : 17, "y" : 15}
+}
