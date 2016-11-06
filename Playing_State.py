@@ -244,97 +244,127 @@ class SpaceShip:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         self.ship_stop(tile.x, tile.y)
                 elif tile.type == 10:
-                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        if tile.division == 1:
-                            if self.direction == 1:
+                    if tile.division == 1:
+                        if self.direction == 0:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                self.ship_stop(tile.x, tile.y)
+                        elif self.direction == 1:
+                            if self.x + 1 > tile.x + 0.5 and self.x - 1 < tile.x + 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.direction = 0
                                 self.x = tile.x
-                                self.y = tile.y
-                            elif self.direction == 2:
+                                self.y = tile.y + 1
+                        elif self.direction == 2:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 0.5 and self.y - 1 < tile.y - 0.5:
                                 self.direction = 3
-                                self.x = tile.x
+                                self.x = tile.x - 1
                                 self.y = tile.y
-                            else:
+                        elif self.direction == 3:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif tile.division == 2:
-                            if self.direction == 2:
+                    elif tile.division == 2:
+                        if self.direction == 0:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                self.ship_stop(tile.x, tile.y)
+                        elif self.direction == 1:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                self.ship_stop(tile.x, tile.y)
+                        elif self.direction == 2:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 0.5 and self.y - 1 < tile.y - 0.5:
                                 self.direction = 1
-                                self.x = tile.x
+                                self.x = tile.x + 1
                                 self.y = tile.y
-                            elif self.direction == 3:
+                        elif self.direction == 3:
+                            if self.x + 1 > tile.x - 0.5 and self.x - 1 < tile.x - 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.direction = 0
                                 self.x = tile.x
-                                self.y = tile.y
-                            else:
-                                self.ship_stop(tile.x, tile.y)
-                        elif tile.division == 3:
-                            if self.direction == 3:
-                                self.direction = 2
-                                self.x = tile.x
-                                self.y = tile.y
-                            elif self.direction == 0:
+                                self.y = tile.y + 1
+                    elif tile.division == 3:
+                        if self.direction == 0:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 0.5 and self.y - 1 < tile.y + 0.5:
                                 self.direction = 1
-                                self.x = tile.x
+                                self.x = tile.x + 1
                                 self.y = tile.y
-                            else:
+                        elif self.direction == 1:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif tile.division == 4:
-                            if self.direction == 0:
-                                self.direction = 3
-                                self.x = tile.x
-                                self.y = tile.y
-                            elif self.direction == 1:
+                        elif self.direction == 2:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                self.ship_stop(tile.x, tile.y)
+                        elif self.direction == 3:
+                            if self.x + 1 > tile.x - 0.5 and self.x - 1 < tile.x - 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.direction = 2
                                 self.x = tile.x
+                                self.y = tile.y - 1
+                    elif tile.division == 4:
+                        if self.direction == 0:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 0.5 and self.y - 1 < tile.y + 0.5:
+                                self.direction = 3
+                                self.x = tile.x - 1
                                 self.y = tile.y
-                            else:
+                        elif self.direction == 1:
+                            if self.x + 1 > tile.x + 0.5 and self.x - 1 < tile.x + 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                self.direction = 2
+                                self.x = tile.x
+                                self.y = tile.y - 1
+                        elif self.direction == 2:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                                self.ship_stop(tile.x, tile.y)
+                        elif self.direction == 3:
+                            if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
                 elif tile.type == 11:
                     if tile.division == 0:
-                        if self.direction == 0 or self.direction == 2:
-                            if self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
+                            self.ship_stop(tile.x, tile.y + 1)
+                        elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
+                            self.ship_stop(tile.x, tile.y - 1)
+                        elif self.x + 1 > tile.x + 1 and self.x - 1 < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            if self.direction == 1:
                                 tile.division = 1
-                        elif self.direction == 1:
-                            if self.x > tile.x - 2 and self.x < tile.x - 2 and self.y > tile.y - 1 and self.y < tile.y + 1:
-                                self.ship_stop(tile.x - 1, tile.y)
-                        elif self.direction == 3:
-                            if self.x > tile.x - 2 and self.x < tile.x - 2 and self.y > tile.y - 1 and self.y < tile.y + 1:
-                                self.ship_stop(tile.x + 1, tile.y)
+                                self.x = tile.x + 1
+                        elif self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            if self.direction == 3:
+                                tile.division = 1
+                                self.x = tile.x - 1
                     elif tile.division == 1:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x, tile.y)
                 elif tile.type == 12:
                     if tile.division == 0:
-                        if self.direction == 0 or self.direction == 2:
-                            if self.x > tile.x - 1 and self.x < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if self.x + 1 > tile.x + 1 and self.x - 1 < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            self.ship_stop(tile.x + 1, tile.y)
+                        elif self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                            self.ship_stop(tile.x - 1, tile.y)
+                        elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
+                            if self.direction == 0:
                                 tile.division = 1
-                        elif self.direction == 1:
-                            if self.x > tile.x - 2 and self.x < tile.x - 2 and self.y > tile.y - 1 and self.y < tile.y + 1:
-                                self.ship_stop(tile.x - 1, tile.y)
-                        elif self.direction == 3:
-                            if self.x > tile.x - 2 and self.x < tile.x - 2 and self.y > tile.y - 1 and self.y < tile.y + 1:
-                                self.ship_stop(tile.x + 1, tile.y)
+                                self.y = tile.y + 1
+                        elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
+                            if self.direction == 2:
+                                tile.division = 1
+                                self.y = tile.y - 1
                     elif tile.division == 1:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x, tile.y)
                 elif tile.type == 13 and tile.division < 361:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        if tile.division > 0:
-                            tile.division = 361
+                        if tile.division == 0:
+                            tile.division += 36
                         self.ship_stop(tile.x, tile.y)
-                        tile.division += 36
                 elif tile.type == 14:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        if self.direction == 0:
+                        if self.direction == 0 and tile.division % 10 == 0:
                             tile.division += 1
-                        elif self.direction == 1:
+                        elif self.direction == 1 and tile.division % 100 // 10 == 0:
                             tile.division += 10
-                        elif self.direction == 2:
+                        elif self.direction == 2 and tile.division % 1000 // 100 == 0:
                             tile.division += 100
-                        elif self.direction == 3:
+                        elif self.direction == 3 and tile.division // 1000 == 0:
                             tile.division += 1000
                         self.ship_stop(tile.x, tile.y)
-
+                elif tile.type == 15:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        self.ship_stop(tile.x, tile.y)
 
     def ship_stop(self, tilex, tiley):
         if self.direction == 0:
@@ -388,23 +418,49 @@ def handle_events():
                 if event.key == SDLK_UP:
                     spaceship.direction = 0
                     spaceship.canmove = False
+                    for tile in tiles:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                            if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
+                            spaceship.y + 1 > tile.y - 1 and spaceship.y - 1 < tile.y - 1:
+                                tile.division = 361
+                                spaceship.direction = -1
+                                spaceship.canmove = True
+                                break
                 elif event.key == SDLK_RIGHT:
                     spaceship.direction = 1
                     spaceship.canmove = False
+                    for tile in tiles:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                            if spaceship.x + 1 > tile.x - 1 and spaceship.x - 1 < tile.x - 1 and \
+                            spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
+                                tile.division = 361
+                                spaceship.direction = -1
+                                spaceship.canmove = True
+                                break
                 elif event.key == SDLK_DOWN:
                     spaceship.direction = 2
                     spaceship.canmove = False
+                    for tile in tiles:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                            if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
+                            spaceship.y + 1 > tile.y + 1 and spaceship.y - 1 < tile.y + 1:
+                                tile.division = 361
+                                spaceship.direction = -1
+                                spaceship.canmove = True
+                                break
                 elif event.key == SDLK_LEFT:
                     spaceship.direction = 3
                     spaceship.canmove = False
+                    for tile in tiles:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                            if spaceship.x + 1 > tile.x + 1 and spaceship.x - 1 < tile.x + 1 and \
+                            spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
+                                tile.division = 361
+                                spaceship.direction = -1
+                                spaceship.canmove = True
+                                break
                 elif event.key == SDLK_ESCAPE:
                     Game_Framework.running = False
-                elif event.key == SDLK_SPACE:
-                    status_board.life -= 1
-                    if status_board.life < 0:
-                        Game_Framework.change_state(Title_State)
-                    stage.StageNum -= 1
-                    spaceship.next_stage = True
                 elif event.key == SDLK_n:
                     status_board.stagenum += 1
                     spaceship.next_stage = True
@@ -413,6 +469,12 @@ def handle_events():
                     grid.OnOff = False
                 else:
                     grid.OnOff = True
+            if event.key == SDLK_SPACE:
+                status_board.life -= 1
+                if status_board.life < 0:
+                    Game_Framework.change_state(Title_State)
+                stage.StageNum -= 1
+                spaceship.next_stage = True
 
 def get_frame_time():
     global current_time
@@ -450,8 +512,8 @@ def update():
 
     frame_time = get_frame_time()
     spaceship.update(frame_time)
-    if int(frame_time) % 2 == 0:
-        spaceship.collision_check()
+    spaceship.collision_check()
+
     Tile.Tile.gate_on = True
     for tile in tiles:
         tile.update()

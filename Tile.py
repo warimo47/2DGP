@@ -96,29 +96,32 @@ class Tile:
                 Tile.gate_on = False
                 if self.division > 0:
                     self.division += 1
+        elif self.type == 14:
+            if self.division != 1111:
+                Tile.gate_on = False
 
     def draw(self):
         if self.type == 0:
             Tile.Ship.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 1:
+        elif self.type == 1:
             Tile.Exit_Gate.clip_draw(self.division * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 2:
+        elif self.type == 2:
             Tile.Portal_Red.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 3:
+        elif self.type == 3:
             Tile.Portal_Blue.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 4:
+        elif self.type == 4:
             Tile.Portal_Green.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 5:
+        elif self.type == 5:
             Tile.Portal_Yellow.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 6:
+        elif self.type == 6:
             Tile.Portal_Purple.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 7:
+        elif self.type == 7:
             Tile.Portal_Pink.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 8:
+        elif self.type == 8:
             Tile.Portal_Skyblue.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 9:
+        elif self.type == 9:
             Tile.Wall.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 10:
+        elif self.type == 10:
             if self.division == 1:
                 Tile.Curve1.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             if self.division == 2:
@@ -127,19 +130,19 @@ class Tile:
                 Tile.Curve3.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             if self.division == 4:
                 Tile.Curve4.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 11:
+        elif self.type == 11:
             if self.division == 0:
                 Tile.Drill_H_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.Drill_H_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 12:
+        elif self.type == 12:
             if self.division == 0:
                 Tile.Drill_W_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.Drill_W_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 13 and self.division < 361:
+        elif self.type == 13 and self.division < 361:
             Tile.Bomb.clip_draw((self.division // 36) * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        if self.type == 14:
+        elif self.type == 14:
             if (self.division % 100) // 10 == 0:
                 Tile.RButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
@@ -156,3 +159,5 @@ class Tile:
                 Tile.RButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.GButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        elif self.type == 15:
+            pass
