@@ -395,8 +395,7 @@ class Stage:
     def load_stage(self):
         self.filename = 'Stage\Stage' + str(self.StageNum) + '.txt'
         self.stage_data_file = open(self.filename, 'r')
-        self.stage_data_text = self.stage_data_file.read()
-        self.stage_data = json.loads(self.stage_data_text)
+        self.stage_data = json.load(self.stage_data_file)
         for number in self.stage_data:
             if self.stage_data[number]['Tile_Type'] == 0:
                 spaceship.setxy(self.stage_data[number]['x'], self.stage_data[number]['y'])
