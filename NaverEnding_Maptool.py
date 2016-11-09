@@ -3,6 +3,24 @@ import Define_File
 import Grid
 import Tile
 
+global MakingMap, grid, tiles, TileCount
+global MouseX, MouseY
+global TileChoice, TileDivision
+global portal_red_num, portal_blue_num, portal_green_num, portal_yellow_num, portal_purple_num, portal_pink_num, portal_skyblue_num
+global StageData
+
+tiles, TileCount = None, None
+MouseX, MouseY = None, None
+TileChoice, TileDivision = None, None
+portal_red_num = None
+portal_blue_num = None
+portal_green_num = None
+portal_yellow_num = None
+portal_purple_num = None
+portal_pink_num = None
+portal_skyblue_num = None
+StageData = None
+
 class BackGround:
     def __init__(self):
         self.image = load_image('resource\Background\MapToolBack.png')
@@ -33,18 +51,23 @@ def handle_events():
                 MakingMap = False
 
 def save_file():
-    global NumFile, tiles , MapNum
-    filename = 'Stage\Stage' + str(MapNum) + '.txt'
-    Stage = open(filename, 'w')
-    Stage.write(str(len(tiles)) + '\n')
+    global tiles, StageData
+    global MapToolSetupData
+
+    filename = 'Stage\Stage' + str(MapToolSetupData["StageCount"]) + '.txt'
+
     for tile in tiles:
-        sentence = str(tile.type) + '\n' + str(tile.division) + '\n' + str(tile.x) + '\n' + str(tile.y) + '\n'
-        Stage.write(sentence)
-    Stage.close()
-    MapNum += 1
-    NumFile = open('File_Num.txt', 'w')
-    NumFile.write(str(MapNum))
-    NumFile.close()
+        StageData[tiles.index(tile)] = {"Tile_Type" : tile.type, "Division" : tile.division, "x" : tile.x, "y" : tile.y}
+
+    StageFile = open(filename, 'w')
+    json.dump(StageData, StageFile)
+    StageFile.close()
+
+    MapToolSetupData["StageCount"] = MapToolSetupData["StageCount"] + 1
+
+    MapToolSetupFile = open('MapToolSetup.txt', 'w')
+    json.dump(MapToolSetupData, MapToolSetupFile)
+    MapToolSetupFile.close()
 
 def all_clear():
     global tiles
@@ -104,17 +127,6 @@ def select_tile():
         TileChoice = 12
 
 def input_tile():
-    global tiles
-    global MouseX, MouseY
-    global TileChoice, TileDivision
-    global portal_red_num
-    global portal_blue_num
-    global portal_green_num
-    global portal_yellow_num
-    global portal_purple_num
-    global portal_pink_num
-    global portal_skyblue_num
-
     if TileChoice == 0:
         for tile in tiles:
             if tile.type == 0:
@@ -306,33 +318,39 @@ def input_tile():
     if TileChoice != -1:
         tiles.append(Tile.Tile(TileChoice, TileDivision, MouseX // 36, MouseY // 36))
 
+
 # 메인 함수
 def main():
-    global MapNum, NumFile
-    NumFile = open('File_Num.txt', 'r')
-    MapNum = int(NumFile.read())
-    NumFile.close()
+    global MakingMap, grid, tiles, TileCount
+    global MouseX, MouseY
+    global TileChoice, TileDivision
+    global portal_red_num, portal_blue_num, portal_green_num, portal_yellow_num, portal_purple_num, portal_pink_num, portal_skyblue_num
+    global MapToolSetupData, StageData
+
+    MapToolSetupFile = open('MapToolSetup.txt', 'r')
+    MapToolSetupData = json.load(MapToolSetupFile)
+    MapToolSetupFile.close()
 
     open_canvas(Define_File.WINWIDTH, Define_File.WINHEIGHT)
 
-    global MakingMap, grid, tiles, TileChoice, TileDivision, MouseX, MouseY
-    global portal_red_num, portal_blue_num, portal_green_num, portal_yellow_num
-    global portal_purple_num, portal_pink_num, portal_skyblue_num
     background = BackGround()
     MakingMap = True
-    TileChoice = 0
-    TileDivision = 0
-    MouseX, MouseY = 0, 0
-    portal_red_num = 0
-    portal_blue_num = 0
-    portal_green_num = 0
-    portal_yellow_num = 0
-    portal_purple_num = 0
-    portal_pink_num = 0
-    portal_skyblue_num = 0
     grid = Grid.Grid()
     grid.OnOff = True
     tiles = []
+    StageData = {}
+
+    TileCount = MapToolSetupData["TileCount"]
+    TileChoice = MapToolSetupData["TileChoice"]
+    TileDivision = MapToolSetupData["TileDivision"]
+    MouseX, MouseY = MapToolSetupData["MouseX"], MapToolSetupData["MouseY"]
+    portal_red_num = MapToolSetupData["Portal_Red_Num"]
+    portal_blue_num = MapToolSetupData["Portal_Blue_Num"]
+    portal_green_num = MapToolSetupData["Portal_Green_Num"]
+    portal_yellow_num = MapToolSetupData["Portal_Yellow_Num"]
+    portal_purple_num = MapToolSetupData["Portal_Purple_Num"]
+    portal_pink_num = MapToolSetupData["Portal_Pink_Num"]
+    portal_skyblue_num = MapToolSetupData["Portal_Skyblue_Num"]
 
     while MakingMap:
         handle_events()
