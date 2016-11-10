@@ -3,7 +3,6 @@ import json
 import Game_Framework
 import Title_State
 import Define_File
-import BackGround
 import Status_Board
 import Grid
 import Tile
@@ -389,13 +388,14 @@ class Stage:
     global spaceship
 
     def __init__(self):
-        self.StageNum = 1
-        self.File = None
+        Stage.StageNum = 1
+        Stage.image = load_image('resource\Map\stage1.png')
 
     def load_stage(self):
         self.filename = 'Stage\Stage' + str(self.StageNum) + '.txt'
         self.stage_data_file = open(self.filename, 'r')
         self.stage_data = json.load(self.stage_data_file)
+        self.stage_data_file.close()
         for number in self.stage_data:
             if self.stage_data[number]['Tile_Type'] == 0:
                 spaceship.setxy(self.stage_data[number]['x'], self.stage_data[number]['y'])
@@ -403,8 +403,11 @@ class Stage:
                 NewTile = Tile.Tile(self.stage_data[number]['Tile_Type'], self.stage_data[number]['Division'],
                                     self.stage_data[number]['x'], self.stage_data[number]['y'])
                 tiles.append(NewTile)
-        self.stage_data_file.close()
-        self.StageNum += 1
+        Stage.image = load_image('resource\Map\stage' + str(Stage.StageNum) + '.png')
+        Stage.StageNum += 1
+
+    def draw(self):
+        Stage.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
 
 # 키보드, 마우스 이벤트
 def handle_events():
@@ -487,7 +490,6 @@ def enter():
 
     current_time = get_time()
 
-    background = BackGround.BackGround()
     status_board = Status_Board.Status_Board()
     grid = Grid.Grid()
     spaceship = SpaceShip()
@@ -537,7 +539,7 @@ def draw():
     global tiles
 
     clear_canvas()
-    background.draw()
+    stage.draw()
     grid.draw()
     for tile in tiles:
         tile.draw()
