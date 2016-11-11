@@ -54,13 +54,15 @@ class SpaceShip:
             self.x -= distance
 
     def collision_check(self):
+        global tiles
+
         if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
             self.direction = -1
             status_board.life -= 1
             if status_board.life < 0:
                 Game_Framework.change_state(Title_State)
-            stage.StageNum -= 1
-            spaceship.next_stage = True
+            tiles = []
+            stage.load_stage()
         else:
             for tile in tiles:
                 if tile.type == 1:
@@ -68,7 +70,9 @@ class SpaceShip:
                         if tile.division == 0:
                             self.direction = -1
                             status_board.stagenum += 1
-                            self.next_stage = True
+                            Stage.StageNum += 1
+                            tiles = []
+                            stage.load_stage()
                         else:
                             self.ship_stop(tile.x, tile.y)
                 elif tile.type == 2:
@@ -392,7 +396,7 @@ class Stage:
         Stage.image = load_image('resource\Map\stage1.png')
 
     def load_stage(self):
-        self.filename = 'Stage\Stage' + str(self.StageNum) + '.txt'
+        self.filename = 'Stage\Stage' + str(Stage.StageNum) + '.txt'
         self.stage_data_file = open(self.filename, 'r')
         self.stage_data = json.load(self.stage_data_file)
         self.stage_data_file.close()
@@ -404,13 +408,14 @@ class Stage:
                                     self.stage_data[number]['x'], self.stage_data[number]['y'])
                 tiles.append(NewTile)
         Stage.image = load_image('resource\Map\stage' + str(Stage.StageNum) + '.png')
-        Stage.StageNum += 1
+        spaceship.canmove = True
 
     def draw(self):
         Stage.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
 
 # 키보드, 마우스 이벤트
 def handle_events():
+    global tiles
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -475,8 +480,8 @@ def handle_events():
                 status_board.life -= 1
                 if status_board.life < 0:
                     Game_Framework.change_state(Title_State)
-                stage.StageNum -= 1
-                spaceship.next_stage = True
+                tiles = []
+                stage.load_stage()
 
 def get_frame_time():
     global current_time
@@ -522,18 +527,6 @@ def update():
         for tile in tiles:
             if tile.type == 1:
                 tile.division = 0
-
-    if spaceship.next_stage == True and shipdraw == False:
-        spaceship.next_stage = False
-        tiles = []
-        stage.load_stage()
-        spaceship.canmove = True
-    if shipdraw == True:
-        spaceship.next_stage = False
-        tiles = []
-        stage.load_stage()
-        delay(1.0)
-        spaceship.canmove = True
 
 def draw():
     global tiles
