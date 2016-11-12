@@ -2,7 +2,6 @@ from pico2d import *
 import Define_File
 
 class Tile:
-    Ship = None
     Exit_Gate = None
     Wall = None
     Portal_Red = None
@@ -34,9 +33,8 @@ class Tile:
         self.x, self.y = mx, my
         self.type = type_num
         self.division = _division
+        Tile.bbOn = True
         Tile.gate_on = True
-        if Tile.Ship == None:
-            Tile.Ship = load_image('resource\space_ship\space_ship0.png')
         if Tile.Exit_Gate == None:
             Tile.Exit_Gate = load_image('resource\Tiles\exit_gate.png')
         if Tile.Portal_Red == None:
@@ -161,3 +159,10 @@ class Tile:
                 Tile.GButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 15:
             pass
+
+    def draw_bb(self):
+        if Tile.bbOn == True:
+            draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x * 36, self.y * 36, (self.x + 1) * 36, (self.y + 1) * 36

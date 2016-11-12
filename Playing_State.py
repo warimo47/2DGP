@@ -32,6 +32,7 @@ class SpaceShip:
         self.next_stage = False
         self.frame = 0
         self.total_frames = 0.0
+        self.bbOn = True
 
     def setxy(self, xx, yy):
         self.x, self.y = xx, yy
@@ -387,6 +388,13 @@ class SpaceShip:
         else:
             self.image.clip_draw(self.frame * 70, self.direction * 70, 70, 70, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
 
+    def draw_bb(self):
+        if self.bbOn == True:
+            draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x * 36, self.y * 36, (self.x + 1) * 36, (self.y + 1) * 36
+
 class Stage:
     global tiles
     global spaceship
@@ -416,6 +424,8 @@ class Stage:
 # 키보드, 마우스 이벤트
 def handle_events():
     global tiles
+    global Tile
+
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -476,7 +486,16 @@ def handle_events():
                     grid.OnOff = False
                 else:
                     grid.OnOff = True
-            if event.key == SDLK_SPACE:
+            elif event.key == SDLK_b:
+                if spaceship.bbOn == True:
+                    spaceship.bbOn = False
+                else:
+                    spaceship.bbOn = True
+                if Tile.Tile.bbOn == True:
+                    Tile.Tile.bbOn = False
+                else:
+                    Tile.Tile.bbOn = True
+            elif event.key == SDLK_SPACE:
                 status_board.life -= 1
                 if status_board.life < 0:
                     Game_Framework.change_state(Title_State)
@@ -536,7 +555,8 @@ def draw():
     grid.draw()
     for tile in tiles:
         tile.draw()
+        tile.draw_bb()
     spaceship.draw()
+    spaceship.draw_bb()
     status_board.draw()
     update_canvas()
-    delay(0.01)
