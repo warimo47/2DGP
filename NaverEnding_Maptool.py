@@ -1,4 +1,6 @@
 from pico2d import *
+import tkinter as tk
+from tkinter import filedialog
 import Define_File
 import Grid
 import Tile
@@ -20,6 +22,8 @@ portal_purple_num = None
 portal_pink_num = None
 portal_skyblue_num = None
 StageData = None
+root = tk.Tk()
+root.withdraw()
 
 class BackGround:
     def __init__(self):
@@ -31,6 +35,7 @@ class BackGround:
 def handle_events():
     global MakingMap
     global MouseX, MouseY
+
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -52,9 +57,8 @@ def handle_events():
 
 def save_file():
     global tiles, StageData
-    global MapToolSetupData
 
-    filename = 'Stage\Stage' + str(MapToolSetupData["StageCount"]) + '.txt'
+    filename = filedialog.asksaveasfilename(filetypes=(("text files", ".txt"), ("All files", "*.*")))
 
     for tile in tiles:
         StageData[tiles.index(tile)] = {"Tile_Type" : tile.type, "Division" : tile.division, "x" : tile.x, "y" : tile.y}
@@ -62,12 +66,6 @@ def save_file():
     StageFile = open(filename, 'w')
     json.dump(StageData, StageFile)
     StageFile.close()
-
-    MapToolSetupData["StageCount"] = MapToolSetupData["StageCount"] + 1
-
-    MapToolSetupFile = open('MapToolSetup.txt', 'w')
-    json.dump(MapToolSetupData, MapToolSetupFile)
-    MapToolSetupFile.close()
 
 def all_clear():
     global tiles
@@ -317,7 +315,6 @@ def input_tile():
                 break
     if TileChoice != -1:
         tiles.append(Tile.Tile(TileChoice, TileDivision, MouseX // 36, MouseY // 36))
-
 
 # 메인 함수
 def main():

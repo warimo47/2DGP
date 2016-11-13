@@ -2,6 +2,7 @@ from pico2d import *
 import Define_File
 
 class Tile:
+    SpaceShip = None
     Exit_Gate = None
     Wall = None
     Portal_Red = None
@@ -35,6 +36,8 @@ class Tile:
         self.division = _division
         Tile.bbOn = True
         Tile.gate_on = True
+        if Tile.SpaceShip == None:
+            Tile.SpaceShip = load_image('resource\Tiles\space_ship.png')
         if Tile.Exit_Gate == None:
             Tile.Exit_Gate = load_image('resource\Tiles\exit_gate.png')
         if Tile.Portal_Red == None:
@@ -100,7 +103,7 @@ class Tile:
 
     def draw(self):
         if self.type == 0:
-            Tile.Ship.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            Tile.SpaceShip.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 1:
             Tile.Exit_Gate.clip_draw(self.division * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 2:

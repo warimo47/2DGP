@@ -1,1 +1,1 @@
-{"Portal_Pink_Num": 0, "MouseX": 0, "Portal_Skyblue_Num": 0, "Portal_Purple_Num": 0, "TileDivision": 0, "Portal_Blue_Num": 0, "MouseY": 0, "Portal_Red_Num": 0, "Portal_Yellow_Num": 0, "TileChoice": 0, "TileCount": 0, "Portal_Green_Num": 0, "StageCount": 33}
+{"TileDivision": 0, "TileCount": 0, "Portal_Blue_Num": 0, "Portal_Yellow_Num": 0, "Portal_Pink_Num": 0, "Portal_Red_Num": 0, "Portal_Purple_Num": 0, "Portal_Green_Num": 0, "MouseX": 0, "MouseY": 0, "TileChoice": 0, "Portal_Skyblue_Num": 0}
