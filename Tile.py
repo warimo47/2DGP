@@ -29,12 +29,12 @@ class Tile:
     GButton_Right = None
     GButton_Bottom = None
     GButton_Left = None
+    bbOn = True
 
     def __init__(self, type_num, _division, mx, my):
         self.x, self.y = mx, my
         self.type = type_num
         self.division = _division
-        Tile.bbOn = True
         Tile.gate_on = True
         if Tile.SpaceShip == None:
             Tile.SpaceShip = load_image('resource\Tiles\space_ship.png')
@@ -168,4 +168,15 @@ class Tile:
             draw_rectangle(*self.get_bb())
 
     def get_bb(self):
-        return self.x * 36, self.y * 36, (self.x + 1) * 36, (self.y + 1) * 36
+        if self.type == 11 and self.division == 0:
+            return self.x * 36, (self.y - 1) * 36, (self.x + 1) * 36, (self.y + 2) * 36
+        elif self.type == 12 and self.division == 0:
+            return (self.x - 1) * 36, self.y * 36, (self.x + 2) * 36, (self.y + 1) * 36
+        else:
+            return self.x * 36, self.y * 36, (self.x + 1) * 36, (self.y + 1) * 36
+
+    def bbtoggle(self):
+        if Tile.bbOn == True:
+            Tile.bbOn = False
+        else:
+            Tile.bbOn = True

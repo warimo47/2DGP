@@ -5,5 +5,5 @@ import Playing_State
 import Define_File
 
 open_canvas(Define_File.WINWIDTH, Define_File.WINHEIGHT)
-Game_Framework.run(Playing_State)
+Game_Framework.run(Opening_State)
 close_canvas()

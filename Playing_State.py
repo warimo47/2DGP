@@ -70,8 +70,7 @@ class SpaceShip:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division == 0:
                             self.direction = -1
-                            status_board.stagenum += 1
-                            Stage.StageNum += 1
+                            stage.StageNumUp()
                             tiles = []
                             stage.load_stage()
                         else:
@@ -382,6 +381,9 @@ class SpaceShip:
         self.canmove = True
         self.direction = -1
 
+    def dontmoveship(self):
+        self.direction = -1
+
     def draw(self):
         if self.direction == -1:
             self.stop.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
@@ -395,6 +397,12 @@ class SpaceShip:
     def get_bb(self):
         return self.x * 36, self.y * 36, (self.x + 1) * 36, (self.y + 1) * 36
 
+    def bbtoggle(self):
+        if self.bbOn == True:
+            self.bbOn = False
+        else:
+            self.bbOn = True
+
 class Stage:
     global tiles
     global spaceship
@@ -402,6 +410,21 @@ class Stage:
     def __init__(self):
         Stage.StageNum = 1
         Stage.image = load_image('resource\Map\stage1.png')
+        self.number0 = load_image('resource\Status\\Number0.png')
+        self.number1 = load_image('resource\Status\\Number1.png')
+        self.number2 = load_image('resource\Status\\Number2.png')
+        self.number3 = load_image('resource\Status\\Number3.png')
+        self.number4 = load_image('resource\Status\\Number4.png')
+        self.number5 = load_image('resource\Status\\Number5.png')
+        self.number6 = load_image('resource\Status\\Number6.png')
+        self.number7 = load_image('resource\Status\\Number7.png')
+        self.number8 = load_image('resource\Status\\Number8.png')
+        self.number9 = load_image('resource\Status\\Number9.png')
+        self.numbers = [self.number0, self.number1, self.number2, self.number3, self.number4,
+                        self.number5, self.number6, self.number7, self.number8, self.number9]
+
+    def StageNumUp(self):
+        Stage.StageNum += 1
 
     def load_stage(self):
         self.filename = 'Stage\Stage' + str(Stage.StageNum) + '.txt'
@@ -420,6 +443,9 @@ class Stage:
 
     def draw(self):
         Stage.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
+        if Stage.StageNum // 10 != 0:
+            self.numbers[Stage.StageNum // 10].draw(18, 882)
+        self.numbers[Stage.StageNum % 10].draw(36, 882)
 
 # 키보드, 마우스 이벤트
 def handle_events():
@@ -479,24 +505,17 @@ def handle_events():
                 elif event.key == SDLK_ESCAPE:
                     Game_Framework.running = False
                 elif event.key == SDLK_n:
-                    status_board.stagenum += 1
-                    spaceship.next_stage = True
+                    stage.StageNumUp()
+                    tiles = []
+                    stage.load_stage()
             if event.key == SDLK_g:
-                if grid.OnOff == True:
-                    grid.OnOff = False
-                else:
-                    grid.OnOff = True
+                grid.toggle()
             elif event.key == SDLK_b:
-                if spaceship.bbOn == True:
-                    spaceship.bbOn = False
-                else:
-                    spaceship.bbOn = True
-                if Tile.Tile.bbOn == True:
-                    Tile.Tile.bbOn = False
-                else:
-                    Tile.Tile.bbOn = True
+                spaceship.bbtoggle()
+                tiles[0].bbtoggle()
             elif event.key == SDLK_SPACE:
-                status_board.life -= 1
+                spaceship.dontmoveship()
+                status_board.lifedown()
                 if status_board.life < 0:
                     Game_Framework.change_state(Title_State)
                 tiles = []
@@ -520,7 +539,6 @@ def enter():
     stage = Stage()
     tiles = []
     stage.load_stage()
-    hide_cursor()
     shipdraw = False
 
 def exit():
@@ -560,3 +578,4 @@ def draw():
     spaceship.draw_bb()
     status_board.draw()
     update_canvas()
+    delay(0.025)
