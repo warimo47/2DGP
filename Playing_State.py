@@ -422,6 +422,9 @@ class Stage:
         self.number9 = load_image('resource\Status\\Number9.png')
         self.numbers = [self.number0, self.number1, self.number2, self.number3, self.number4,
                         self.number5, self.number6, self.number7, self.number8, self.number9]
+        self.bgm = load_music('NaverEnding_BGM.ogg')
+        self.bgm.set_volume(255)
+        self.bgm.repeat_play()
 
     def StageNumUp(self):
         Stage.StageNum += 1
@@ -446,6 +449,10 @@ class Stage:
         if Stage.StageNum // 10 != 0:
             self.numbers[Stage.StageNum // 10].draw(18, 882)
         self.numbers[Stage.StageNum % 10].draw(36, 882)
+
+    def __del__(self):
+        del Stage.image
+        del self.bgm
 
 # 키보드, 마우스 이벤트
 def handle_events():
