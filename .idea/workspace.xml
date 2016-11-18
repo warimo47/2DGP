@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c49b8b99-4286-4a20-8917-e2c1486daf4d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NaverEnding.py" afterPath="$PROJECT_DIR$/NaverEnding.py" />
     </list>
     <ignored path="2DGP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,95 +26,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Playing_State.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Playing_State.py">
+      <file leaf-file-name="NaverEnding.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NaverEnding.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="522" column="0" selection-start-line="522" selection-start-column="0" selection-end-line="522" selection-end-column="0" />
-              <folding>
-                <element signature="e#208#24400#0" expanded="false" />
-                <element signature="e#615#946#0" expanded="false" />
-                <element signature="e#985#1008#0" expanded="false" />
-                <element signature="e#1052#1617#0" expanded="false" />
-                <element signature="e#1658#23333#0" expanded="false" />
-                <element signature="e#1751#1954#0" expanded="false" />
-                <element signature="e#2525#4192#0" expanded="false" />
-                <element signature="e#4250#5917#0" expanded="false" />
-                <element signature="e#5975#7642#0" expanded="false" />
-                <element signature="e#7700#9367#0" expanded="false" />
-                <element signature="e#9425#11092#0" expanded="false" />
-                <element signature="e#11150#12817#0" expanded="false" />
-                <element signature="e#12875#14542#0" expanded="false" />
-                <element signature="e#14600#14750#0" expanded="false" />
-                <element signature="e#14809#19550#0" expanded="false" />
-                <element signature="e#14856#15977#0" expanded="false" />
-                <element signature="e#16047#17168#0" expanded="false" />
-                <element signature="e#17238#18359#0" expanded="false" />
-                <element signature="e#18429#19550#0" expanded="false" />
-                <element signature="e#19609#20807#0" expanded="false" />
-                <element signature="e#20866#22064#0" expanded="false" />
-                <element signature="e#22147#22392#0" expanded="false" />
-                <element signature="e#22451#23124#0" expanded="false" />
-                <element signature="e#23183#23333#0" expanded="false" />
-                <element signature="e#23382#23687#0" expanded="false" />
-                <element signature="e#23725#23744#0" expanded="false" />
-                <element signature="e#23774#24074#0" expanded="false" />
-                <element signature="e#24107#24171#0" expanded="false" />
-                <element signature="e#24203#24272#0" expanded="false" />
-                <element signature="e#24306#24400#0" expanded="false" />
-                <element signature="e#24419#26549#0" expanded="false" />
-                <element signature="e#24486#25412#0" expanded="false" />
-                <element signature="e#25448#25467#0" expanded="false" />
-                <element signature="e#25503#26285#0" expanded="false" />
-                <element signature="e#26315#26547#0" expanded="false" />
-                <element signature="e#26589#30140#0" expanded="false" />
-                <element signature="e#26891#27475#0" expanded="false" />
-                <element signature="e#27542#28126#0" expanded="false" />
-                <element signature="e#28192#28776#0" expanded="false" />
-                <element signature="e#28842#29426#0" expanded="false" />
-                <element signature="e#29587#29675#0" expanded="false" />
-                <element signature="e#29796#29852#0" expanded="false" />
-                <element signature="e#30168#30284#0" expanded="false" />
-                <element signature="e#30303#30598#0" expanded="false" />
-                <element signature="e#30687#31024#0" expanded="false" />
-                <element signature="e#31042#31279#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016180016.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/2016180016.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NaverEnding_Maptool.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+            <state relative-caret-position="152">
+              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <element signature="e#1029#1661#0" expanded="false" />
-                <element signature="e#2125#4384#0" expanded="false" />
-                <element signature="e#4408#11867#0" expanded="false" />
-                <element signature="e#4436#4542#0" expanded="false" />
-                <element signature="e#4577#4683#0" expanded="false" />
-                <element signature="e#4718#4993#0" expanded="false" />
-                <element signature="e#5028#5305#0" expanded="false" />
-                <element signature="e#5340#5620#0" expanded="false" />
-                <element signature="e#5655#5938#0" expanded="false" />
-                <element signature="e#5973#6256#0" expanded="false" />
-                <element signature="e#6291#6568#0" expanded="false" />
-                <element signature="e#6603#6889#0" expanded="false" />
-                <element signature="e#6925#8829#0" expanded="false" />
-                <element signature="e#8865#10769#0" expanded="false" />
-                <element signature="e#10820#11754#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -147,11 +66,11 @@
         <option value="$PROJECT_DIR$/BackGround.py" />
         <option value="$PROJECT_DIR$/MapToolSetup.txt" />
         <option value="$PROJECT_DIR$/NaverEnding_Maptool.py" />
-        <option value="$PROJECT_DIR$/NaverEnding.py" />
         <option value="$PROJECT_DIR$/Grid.py" />
         <option value="$PROJECT_DIR$/Tile.py" />
         <option value="$PROJECT_DIR$/Status_Board.py" />
         <option value="$PROJECT_DIR$/Playing_State.py" />
+        <option value="$PROJECT_DIR$/NaverEnding.py" />
       </list>
     </option>
   </component>
@@ -415,18 +334,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33862433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957264" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33862433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957264" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -442,207 +361,45 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="44" />
+      <option name="time" value="45" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Lab04/lab4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2641">
-          <caret line="139" column="52" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab04/lab4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2641">
-          <caret line="139" column="52" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/Lab04/lab4.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py" />
+    <entry file="file://D:/Lab04/lab4.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
     <entry file="file://$PROJECT_DIR$/resource/NaverEnding_Maptool.py" />
     <entry file="file://D:/2016-2DGP/Labs/Lab02/character_runs_esc.py" />
     <entry file="file://D:/2016-2DGP/Labs/Lab02/move_character_with_mouse.py" />
-    <entry file="file://$PROJECT_DIR$/../Lab04/lab4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/Lab04/lab4.py" />
     <entry file="file://$PROJECT_DIR$/Ship.py" />
-    <entry file="file://$PROJECT_DIR$/../Lab05/start_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab05/title_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab05/game_framework.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="87" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab05/mygame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab05/main_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/Lab05/start_state.py" />
+    <entry file="file://D:/Lab05/title_state.py" />
+    <entry file="file://D:/Lab05/game_framework.py" />
+    <entry file="file://D:/Lab05/mygame.py" />
+    <entry file="file://D:/Lab05/main_state.py" />
     <entry file="file://$PROJECT_DIR$/Wall.py" />
     <entry file="file://$PROJECT_DIR$/Exit_Gate.py" />
-    <entry file="file://$PROJECT_DIR$/../Lab06 - AI/ai_boy_IQ10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="115" column="20" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/Lab06 - AI/ai_boy_IQ10.py" />
     <entry file="file://$PROJECT_DIR$/Bomb.py" />
-    <entry file="file://$PROJECT_DIR$/Title_State.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab08 - Time/adjust_run_and_action.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pw.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Opening_State.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Define_File.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game_Framework.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="63" column="11" selection-start-line="63" selection-start-column="11" selection-end-line="63" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Title_State.py" />
+    <entry file="file://D:/Lab08 - Time/adjust_run_and_action.py" />
+    <entry file="file://$PROJECT_DIR$/pw.txt" />
+    <entry file="file://$PROJECT_DIR$/Opening_State.py" />
+    <entry file="file://$PROJECT_DIR$/Define_File.py" />
+    <entry file="file://$PROJECT_DIR$/Game_Framework.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/json/decoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -665,13 +422,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BackGround.py" />
-    <entry file="file://$PROJECT_DIR$/../Lab09 - Collision Handling/ball.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/Lab09 - Collision Handling/ball.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/tkinter/commondialog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -679,38 +430,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MapToolSetup.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="238" selection-start-line="0" selection-start-column="238" selection-end-line="0" selection-end-column="238" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#1029#1661#0" expanded="false" />
-            <element signature="e#2125#4384#0" expanded="false" />
-            <element signature="e#4408#11867#0" expanded="false" />
-            <element signature="e#4436#4542#0" expanded="false" />
-            <element signature="e#4577#4683#0" expanded="false" />
-            <element signature="e#4718#4993#0" expanded="false" />
-            <element signature="e#5028#5305#0" expanded="false" />
-            <element signature="e#5340#5620#0" expanded="false" />
-            <element signature="e#5655#5938#0" expanded="false" />
-            <element signature="e#5973#6256#0" expanded="false" />
-            <element signature="e#6291#6568#0" expanded="false" />
-            <element signature="e#6603#6889#0" expanded="false" />
-            <element signature="e#6925#8829#0" expanded="false" />
-            <element signature="e#8865#10769#0" expanded="false" />
-            <element signature="e#10820#11754#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MapToolSetup.txt" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding_Maptool.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/site-packages/pico2d.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -725,39 +446,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Grid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Status_Board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="66" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Grid.py" />
+    <entry file="file://$PROJECT_DIR$/Tile.py" />
+    <entry file="file://$PROJECT_DIR$/Status_Board.py" />
     <entry file="file://$PROJECT_DIR$/2012180016.txt" />
     <entry file="file://$PROJECT_DIR$/Playing_State.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="522" column="0" selection-start-line="522" selection-start-column="0" selection-end-line="522" selection-end-column="0" />
+        <state relative-caret-position="152">
+          <caret line="447" column="55" selection-start-line="447" selection-start-column="55" selection-end-line="447" selection-end-column="55" />
           <folding>
             <element signature="e#208#24400#0" expanded="false" />
             <element signature="e#615#946#0" expanded="false" />
@@ -809,11 +505,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2016180016.txt">
+    <entry file="file://$PROJECT_DIR$/2016180016.txt" />
+    <entry file="file://$PROJECT_DIR$/NaverEnding.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="152">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
