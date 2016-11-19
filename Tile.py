@@ -93,10 +93,12 @@ class Tile:
 
     def update(self):
         if self.type == 13:
-            if self.division < 361:
+            if self.division < 551:
                 Tile.gate_on = False
                 if self.division > 0:
                     self.division += 1
+            elif self.division < 801:
+                self.division += 4
         elif self.type == 14:
             if self.division != 1111:
                 Tile.gate_on = False
@@ -141,8 +143,8 @@ class Tile:
                 Tile.Drill_W_B.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.Drill_W_A.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        elif self.type == 13 and self.division < 361:
-            Tile.Bomb.clip_draw((self.division // 36) * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+        elif self.type == 13 and self.division < 801:
+            Tile.Bomb.clip_draw((self.division // 50) * 50, 0, 50, 50, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 14:
             if (self.division % 100) // 10 == 0:
                 Tile.RButton_Left.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)

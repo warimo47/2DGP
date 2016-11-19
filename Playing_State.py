@@ -469,10 +469,10 @@ def handle_events():
                     spaceship.direction = 0
                     spaceship.canmove = False
                     for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
                             spaceship.y + 1 > tile.y - 1 and spaceship.y - 1 < tile.y - 1:
-                                tile.division = 361
+                                tile.division = 551
                                 spaceship.direction = -1
                                 spaceship.canmove = True
                                 break
@@ -480,10 +480,10 @@ def handle_events():
                     spaceship.direction = 1
                     spaceship.canmove = False
                     for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x - 1 and spaceship.x - 1 < tile.x - 1 and \
                             spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
-                                tile.division = 361
+                                tile.division = 551
                                 spaceship.direction = -1
                                 spaceship.canmove = True
                                 break
@@ -491,10 +491,10 @@ def handle_events():
                     spaceship.direction = 2
                     spaceship.canmove = False
                     for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
                             spaceship.y + 1 > tile.y + 1 and spaceship.y - 1 < tile.y + 1:
-                                tile.division = 361
+                                tile.division = 551
                                 spaceship.direction = -1
                                 spaceship.canmove = True
                                 break
@@ -502,10 +502,10 @@ def handle_events():
                     spaceship.direction = 3
                     spaceship.canmove = False
                     for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 361:
+                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x + 1 and spaceship.x - 1 < tile.x + 1 and \
                             spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
-                                tile.division = 361
+                                tile.division = 551
                                 spaceship.direction = -1
                                 spaceship.canmove = True
                                 break
@@ -585,4 +585,3 @@ def draw():
     spaceship.draw_bb()
     status_board.draw()
     update_canvas()
-    delay(0.025)
