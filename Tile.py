@@ -92,13 +92,18 @@ class Tile:
             Tile.GButton_Left = load_image('resource\Tiles\GButton_Left.png')
 
     def update(self):
-        if self.type == 13:
+        if self.type == 1:
+            if self.division > 0:
+                self.division += 4
+                if self.division > 395:
+                    self.division = 36
+        elif self.type == 13:
             if self.division < 551:
                 Tile.gate_on = False
                 if self.division > 0:
                     self.division += 1
             elif self.division < 801:
-                self.division += 4
+                self.division += 5
         elif self.type == 14:
             if self.division != 1111:
                 Tile.gate_on = False
@@ -107,7 +112,7 @@ class Tile:
         if self.type == 0:
             Tile.SpaceShip.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 1:
-            Tile.Exit_Gate.clip_draw(self.division * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            Tile.Exit_Gate.clip_draw((self.division // 36) * 36, 0, 36, 36, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 2:
             Tile.Portal_Red.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 3:

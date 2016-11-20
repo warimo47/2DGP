@@ -1,6 +1,6 @@
 {
 "1" : {"Tile_Type" : 0, "Division" : 0, "x" : 16, "y" : 8},
-"2" : {"Tile_Type" : 1, "Division" : 0, "x" : 9, "y" : 17},
+"2" : {"Tile_Type" : 1, "Division" : 36, "x" : 9, "y" : 17},
 "3" : {"Tile_Type" : 9, "Division" : 0, "x" : 7, "y" : 9},
 "4" : {"Tile_Type" : 9, "Division" : 0, "x" : 7, "y" : 16},
 "5" : {"Tile_Type" : 9, "Division" : 0, "x" : 8, "y" : 19},

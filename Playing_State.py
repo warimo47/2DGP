@@ -37,6 +37,9 @@ class SpaceShip:
     def setxy(self, xx, yy):
         self.x, self.y = xx, yy
 
+    def setdirection(self, way):
+        self.direction = way
+
     def update(self, frame_time):
         global shipdraw
         shipdraw = False
@@ -68,7 +71,7 @@ class SpaceShip:
             for tile in tiles:
                 if tile.type == 1:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        if tile.division == 0:
+                        if tile.division != 0:
                             self.direction = -1
                             stage.StageNumUp()
                             tiles = []
@@ -349,10 +352,10 @@ class SpaceShip:
                     elif tile.division == 1:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x, tile.y)
-                elif tile.type == 13 and tile.division < 361:
+                elif tile.type == 13 and tile.division < 651:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division == 0:
-                            tile.division += 36
+                            tile.division += 50
                         self.ship_stop(tile.x, tile.y)
                 elif tile.type == 14:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
@@ -381,9 +384,6 @@ class SpaceShip:
         self.canmove = True
         self.direction = -1
 
-    def dontmoveship(self):
-        self.direction = -1
-
     def draw(self):
         if self.direction == -1:
             self.stop.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
@@ -402,6 +402,10 @@ class SpaceShip:
             self.bbOn = False
         else:
             self.bbOn = True
+
+    def __del__(self):
+        del self.image
+        del self.stop
 
 class Stage:
     global tiles
@@ -451,7 +455,16 @@ class Stage:
         self.numbers[Stage.StageNum % 10].draw(36, 882)
 
     def __del__(self):
-        del Stage.image
+        del self.number0
+        del self.number1
+        del self.number2
+        del self.number3
+        del self.number4
+        del self.number5
+        del self.number6
+        del self.number7
+        del self.number8
+        del self.number9
         del self.bgm
 
 # 키보드, 마우스 이벤트
@@ -466,47 +479,47 @@ def handle_events():
         elif event.type == SDL_KEYDOWN:
             if spaceship.canmove == True:
                 if event.key == SDLK_UP:
-                    spaceship.direction = 0
+                    spaceship.setdirection(0)
                     spaceship.canmove = False
                     for tile in tiles:
                         if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
                             spaceship.y + 1 > tile.y - 1 and spaceship.y - 1 < tile.y - 1:
                                 tile.division = 551
-                                spaceship.direction = -1
+                                spaceship.setdirection(-1)
                                 spaceship.canmove = True
                                 break
                 elif event.key == SDLK_RIGHT:
-                    spaceship.direction = 1
+                    spaceship.setdirection(1)
                     spaceship.canmove = False
                     for tile in tiles:
                         if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x - 1 and spaceship.x - 1 < tile.x - 1 and \
                             spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
                                 tile.division = 551
-                                spaceship.direction = -1
+                                spaceship.setdirection(-1)
                                 spaceship.canmove = True
                                 break
                 elif event.key == SDLK_DOWN:
-                    spaceship.direction = 2
+                    spaceship.setdirection(2)
                     spaceship.canmove = False
                     for tile in tiles:
                         if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
                             spaceship.y + 1 > tile.y + 1 and spaceship.y - 1 < tile.y + 1:
                                 tile.division = 551
-                                spaceship.direction = -1
+                                spaceship.setdirection(-1)
                                 spaceship.canmove = True
                                 break
                 elif event.key == SDLK_LEFT:
-                    spaceship.direction = 3
+                    spaceship.setdirection(3)
                     spaceship.canmove = False
                     for tile in tiles:
                         if tile.type == 13 and tile.division > 0 and tile.division < 551:
                             if spaceship.x + 1 > tile.x + 1 and spaceship.x - 1 < tile.x + 1 and \
                             spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
                                 tile.division = 551
-                                spaceship.direction = -1
+                                spaceship.setdirection(-1)
                                 spaceship.canmove = True
                                 break
                 elif event.key == SDLK_ESCAPE:
@@ -521,7 +534,7 @@ def handle_events():
                 spaceship.bbtoggle()
                 tiles[0].bbtoggle()
             elif event.key == SDLK_SPACE:
-                spaceship.dontmoveship()
+                spaceship.setdirection(-1)
                 status_board.lifedown()
                 if status_board.life < 0:
                     Game_Framework.change_state(Title_State)
@@ -569,8 +582,8 @@ def update():
         tile.update()
     if Tile.Tile.gate_on == True:
         for tile in tiles:
-            if tile.type == 1:
-                tile.division = 0
+            if tile.type == 1 and tile.division == 0:
+                tile.division = 36
 
 def draw():
     global tiles
