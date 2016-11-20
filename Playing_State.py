@@ -14,6 +14,7 @@ name = "PlayingState"
 class SpaceShip:
     global tiles
     global exit_gate
+    global status_board
 
     PIXEL_PER_METER = 1.0                                                   # 1.0 pixel 1.0 m
     MOVE_SPEED_MPS = 18.0                                                   # Meter / Sec
@@ -62,7 +63,7 @@ class SpaceShip:
 
         if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
             self.direction = -1
-            status_board.life -= 1
+            status_board.lifedown()
             if status_board.life < 0:
                 Game_Framework.change_state(Title_State)
             tiles = []
@@ -73,9 +74,12 @@ class SpaceShip:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division != 0:
                             self.direction = -1
-                            stage.StageNumUp()
-                            tiles = []
-                            stage.load_stage()
+                            if status_board.StageChangeNow == False:
+                                status_board.fadestart()
+                            if status_board.fadecount < 450:
+                                stage.StageNumUp()
+                                tiles = []
+                                stage.load_stage()
                         else:
                             self.ship_stop(tile.x, tile.y)
                 elif tile.type == 2:
@@ -427,7 +431,7 @@ class Stage:
         self.numbers = [self.number0, self.number1, self.number2, self.number3, self.number4,
                         self.number5, self.number6, self.number7, self.number8, self.number9]
         self.bgm = load_music('NaverEnding_BGM.ogg')
-        self.bgm.set_volume(255)
+        self.bgm.set_volume(300)
         self.bgm.repeat_play()
 
     def StageNumUp(self):
@@ -571,11 +575,12 @@ def resume():
     pass
 
 def update():
-    global tiles, shipdraw, stage, tiles
+    global tiles, shipdraw, stage, tiles, status_board
 
     frame_time = get_frame_time()
     spaceship.update(frame_time)
     spaceship.collision_check()
+    status_board.update()
 
     Tile.Tile.gate_on = True
     for tile in tiles:
