@@ -20,27 +20,27 @@ class Status_Board:
                         self.number5, self.number6, self.number7, self.number8, self.number9]
         self.fadeoutfadein = load_image('resource\Background\FadeOutFadeIn.png')
         self.fadecount = 1550
-        self.StageChangeNow = False
+        self.stagechangenow = False
 
     def update(self):
-        if self.StageChangeNow == True:
+        if self.stagechangenow == True:
             self.fadecount -= 15
             if self.fadecount < -650:
-                self.StageChangeNow = False
+                self.stagechangenow = False
 
     def lifedown(self):
         self.life -= 1
 
     def fadestart(self):
         self.fadecount = 1550
-        self.StageChangeNow = True
+        self.stagechangenow = True
 
     def draw(self):
         self.image.draw(Define_File.WINWIDTH - 54, Define_File.WINHEIGHT / 2)
         if self.life // 10 != 0:
             self.numbers[self.life // 10].draw(954, 882)
         self.numbers[self.life % 10].draw(990, 882)
-        if self.StageChangeNow == True:
+        if self.stagechangenow == True:
             self.fadeoutfadein.draw(Define_File.WINWIDTH / 2 - 54, self.fadecount)
 
     def __del__(self):

@@ -24,6 +24,10 @@ class SpaceShip:
     ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
     FRAMES_PER_ACTION = 4
 
+    stagechange_sound = None
+    move_sound = None
+    stop_sound = None
+
     def __init__(self):
         self.stop = load_image('resource\space_ship\space_ship0.png')
         self.image = load_image('resource\space_ship\space_ship.png')
@@ -34,6 +38,15 @@ class SpaceShip:
         self.frame = 0
         self.total_frames = 0.0
         self.bbOn = True
+        if SpaceShip.stagechange_sound == None:
+            SpaceShip.stagechange_sound = load_wav('resource\EffectSound\\NextStage.wav')
+            SpaceShip.stagechange_sound.set_volume(100)
+        if SpaceShip.move_sound == None:
+            SpaceShip.move_sound = load_wav('resource\EffectSound\Move.wav')
+            SpaceShip.move_sound.set_volume(50)
+        if SpaceShip.stop_sound == None:
+            SpaceShip.stop_sound = load_wav('resource\EffectSound\Stop.wav')
+            SpaceShip.stop_sound.set_volume(100)
 
     def setxy(self, xx, yy):
         self.x, self.y = xx, yy
@@ -57,6 +70,8 @@ class SpaceShip:
             self.y -= distance
         elif self.direction == 3:
             self.x -= distance
+        if self.direction != -1 and self.frame == 0:
+            SpaceShip.move_sound.play()
 
     def collision_check(self):
         global tiles
@@ -74,8 +89,9 @@ class SpaceShip:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division != 0:
                             self.direction = -1
-                            if status_board.StageChangeNow == False:
+                            if status_board.stagechangenow == False:
                                 status_board.fadestart()
+                                SpaceShip.stagechange_sound.play()
                             if status_board.fadecount < 450:
                                 stage.StageNumUp()
                                 tiles = []
@@ -387,6 +403,7 @@ class SpaceShip:
             self.x = tilex + 1
         self.canmove = True
         self.direction = -1
+        SpaceShip.stop_sound.play()
 
     def draw(self):
         if self.direction == -1:
