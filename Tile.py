@@ -30,6 +30,8 @@ class Tile:
     GButton_Bottom = None
     GButton_Left = None
     bbOn = True
+    count_sound = None
+    explosion_sound = None
 
     def __init__(self, type_num, _division, mx, my):
         self.x, self.y = mx, my
@@ -90,6 +92,12 @@ class Tile:
             Tile.GButton_Bottom = load_image('resource\Tiles\GButton_Bottom.png')
         if Tile.GButton_Left == None:
             Tile.GButton_Left = load_image('resource\Tiles\GButton_Left.png')
+        if Tile.count_sound == None:
+            Tile.count_sound = load_wav('resource\EffectSound\Count.wav')
+            Tile.count_sound.set_volume(100)
+        if Tile.explosion_sound == None:
+            Tile.explosion_sound = load_wav('resource\EffectSound\Explosion.wav')
+            Tile.explosion_sound.set_volume(100)
 
     def update(self):
         if self.type == 1:
@@ -102,8 +110,13 @@ class Tile:
                 Tile.gate_on = False
                 if self.division > 0:
                     self.division += 1
+                    if self.division % 50 == 20:
+                        Tile.count_sound.play()
             elif self.division < 801:
+                if self.division == 551:
+                    Tile.explosion_sound.play()
                 self.division += 5
+
         elif self.type == 14:
             if self.division != 1111:
                 Tile.gate_on = False
