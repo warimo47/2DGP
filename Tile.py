@@ -1,6 +1,9 @@
 from pico2d import *
 import Define_File
 
+# 초기화 코드
+name = "Tile"
+
 class Tile:
     SpaceShip = None
     Exit_Gate = None
@@ -98,6 +101,9 @@ class Tile:
         if Tile.explosion_sound == None:
             Tile.explosion_sound = load_wav('resource\EffectSound\Explosion.wav')
             Tile.explosion_sound.set_volume(100)
+
+    def explode(self):
+        self.division = 551
 
     def update(self):
         if self.type == 1:

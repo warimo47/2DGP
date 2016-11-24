@@ -1,12 +1,14 @@
 from pico2d import *
 import Define_File
 
+# 초기화 코드
+name = "Status_Board"
+
 class Status_Board:
     font = None
 
     def __init__(self):
         self.life = 2
-        self.stagenum = 1
         self.image = load_image('resource\Status\StatusBoard.png')
         self.fadeoutfadein = load_image('resource\Background\FadeOutFadeIn.png')
         self.fadecount = 1550

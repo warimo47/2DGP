@@ -6,6 +6,7 @@ import Define_File
 import Status_Board
 import Grid
 import Tile
+import MovingCounter
 
 # 초기화 코드
 name = "PlayingState"
@@ -26,12 +27,13 @@ class SpaceShip:
     bounce_sound = None
     warp_sound = None
 
+    states = {"STAY" : -1, "MOVE_TOP" : 0, "MOVE_RIGHT" : 1, "MOVE_BOTTOM": 2, "MOVE_LEFT" : 3}
+
     def __init__(self):
         self.stopimage = load_image('resource\space_ship\space_ship0.png')
         self.imagespritesheet = load_image('resource\space_ship\space_ship.png')
         self.x, self.y = -1, -1
-        self.direction = -1
-        self.canmove = True
+        self.state = SpaceShip.states["STAY"]
         self.next_stage = False
         self.frame = 0
         self.total_frames = 0.0
@@ -52,8 +54,66 @@ class SpaceShip:
             SpaceShip.warp_sound = load_wav('resource\EffectSound\Warp.wav')
             SpaceShip.warp_sound.set_volume(100)
 
-    def setxy(self, xx, yy):
-        self.x, self.y = xx, yy
+    def handle_event(self, event):
+        global tiles
+
+        if self.state == SpaceShip.states["STAY"] and event.type == SDL_KEYDOWN:
+            if event.key == SDLK_n:
+                stage.stagenumup()
+                tiles = []
+                stage.load_stage()
+            elif event.key == SDLK_UP:
+                self.state = SpaceShip.states["MOVE_TOP"]
+                movingcounter.increase_movecount()
+                for tile in tiles:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
+                        if tile.type == 9:
+                            self.state = SpaceShip.states["STAY"]
+                            movingcounter.decrease_movecount()
+                            break
+                        elif tile.type == 13 and tile.division > 0 and tile.division < 551:
+                            tile.explode()
+                            self.state = SpaceShip.states["STAY"]
+                            break
+            elif event.key == SDLK_RIGHT:
+                self.state = SpaceShip.states["MOVE_RIGHT"]
+                movingcounter.increase_movecount()
+                for tile in tiles:
+                    if self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if tile.type == 9:
+                            self.state = SpaceShip.states["STAY"]
+                            movingcounter.decrease_movecount()
+                            break
+                        elif tile.type == 13 and tile.division > 0 and tile.division < 551:
+                            tile.explode()
+                            self.state = SpaceShip.states["STAY"]
+                            break
+            elif event.key == SDLK_DOWN:
+                self.state = SpaceShip.states["MOVE_BOTTOM"]
+                movingcounter.increase_movecount()
+                for tile in tiles:
+                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
+                        if tile.type == 9:
+                            self.state = SpaceShip.states["STAY"]
+                            movingcounter.decrease_movecount()
+                            break
+                        elif tile.type == 13 and tile.division > 0 and tile.division < 551:
+                            tile.explode()
+                            self.state = SpaceShip.states["STAY"]
+                            break
+            elif event.key == SDLK_LEFT:
+                self.state = SpaceShip.states["MOVE_LEFT"]
+                movingcounter.increase_movecount()
+                for tile in tiles:
+                    if self.x + 1 > tile.x + 1 and self.x - 1 < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
+                        if tile.type == 9:
+                            self.state = SpaceShip.states["STAY"]
+                            movingcounter.decrease_movecount()
+                            break
+                        elif tile.type == 13 and tile.division > 0 and tile.division < 551:
+                            tile.explode()
+                            self.state = SpaceShip.states["STAY"]
+                            break
 
     def setdirection(self, way):
         self.direction = way
@@ -66,20 +126,20 @@ class SpaceShip:
         self.frame = int(self.total_frames) % 4
         if self.next_stage == True:
             shipdraw = True
-        if self.direction == 0:
+        if self.state == SpaceShip.states["MOVE_TOP"]:
             self.y += distance
-        elif self.direction == 1:
+        elif self.state == SpaceShip.states["MOVE_RIGHT"]:
             self.x += distance
-        elif self.direction == 2:
+        elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
             self.y -= distance
-        elif self.direction == 3:
+        elif self.state == SpaceShip.states["MOVE_LEFT"]:
             self.x -= distance
 
     def collision_check(self):
         global tiles
 
         if self.x < 0 or self.x > 24 or self.y < 0 or self.y > 24:
-            self.direction = -1
+            self.state = SpaceShip.states["STAY"]
             status_board.lifedown()
             if status_board.life < 0:
                 Game_Framework.change_state(Title_State)
@@ -90,11 +150,12 @@ class SpaceShip:
                 if tile.type == 1:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division != 0:
-                            self.direction = -1
+                            self.state = SpaceShip.states["STAY"]
                             if status_board.stagechangenow == False:
                                 status_board.fadestart()
                                 SpaceShip.stagechange_sound.play()
                             if status_board.fadecount < 450:
+                                movingcounter.reset_stagemovecount()
                                 stage.stagenumup()
                                 tiles = []
                                 stage.load_stage()
@@ -431,23 +492,22 @@ class SpaceShip:
                         self.ship_stop(tile.x, tile.y)
 
     def ship_stop(self, tilex, tiley):
-        if self.direction == 0:
+        if self.state == SpaceShip.states["MOVE_TOP"]:
             self.y = tiley - 1
-        elif self.direction == 1:
+        elif self.state == SpaceShip.states["MOVE_RIGHT"]:
             self.x = tilex - 1
-        elif self.direction == 2:
+        elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
             self.y = tiley + 1
-        elif self.direction == 3:
+        elif self.state == SpaceShip.states["MOVE_LEFT"]:
             self.x = tilex + 1
-        self.canmove = True
-        self.direction = -1
+        self.state = SpaceShip.states["STAY"]
         SpaceShip.stop_sound.play()
 
     def draw(self):
-        if self.direction == -1:
+        if self.state == SpaceShip.states["STAY"]:
             self.stopimage.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         else:
-            self.imagespritesheet.clip_draw(self.frame * 70, self.direction * 70, 70, 70, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
+            self.imagespritesheet.clip_draw(self.frame * 70, self.state * 70, 70, 70, (self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
 
     def draw_bb(self):
         if self.bbOn == True:
@@ -470,7 +530,7 @@ class Stage:
     font = None
 
     def __init__(self):
-        Stage.StageNum = 1
+        Stage.stagenum = 1
         Stage.image = load_image('resource\Map\stage1.png')
         if Stage.font == None:
             Stage.font = load_font('digital-7.TTF', 45)
@@ -479,26 +539,26 @@ class Stage:
         self.bgm.repeat_play()
 
     def stagenumup(self):
-        Stage.StageNum += 1
+        Stage.stagenum += 1
 
     def load_stage(self):
-        self.filename = 'Stage\Stage' + str(Stage.StageNum) + '.txt'
+        self.filename = 'Stage\Stage' + str(Stage.stagenum) + '.txt'
         self.stage_data_file = open(self.filename, 'r')
         self.stage_data = json.load(self.stage_data_file)
         self.stage_data_file.close()
         for number in self.stage_data:
             if self.stage_data[number]['Tile_Type'] == 0:
-                spaceship.setxy(self.stage_data[number]['x'], self.stage_data[number]['y'])
+                spaceship.x, spaceship.y = self.stage_data[number]['x'], self.stage_data[number]['y']
             else:
                 NewTile = Tile.Tile(self.stage_data[number]['Tile_Type'], self.stage_data[number]['Division'],
                                     self.stage_data[number]['x'], self.stage_data[number]['y'])
                 tiles.append(NewTile)
-        Stage.image = load_image('resource\Map\stage' + str(Stage.StageNum) + '.png')
+        Stage.image = load_image('resource\Map\stage' + str(Stage.stagenum) + '.png')
         spaceship.canmove = True
 
     def draw(self):
         Stage.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
-        Stage.font.draw(36, 882, str(Stage.StageNum), (255, 255, 255))
+        Stage.font.draw(18, 882, "Stage " + str(Stage.stagenum), (255, 255, 255))
 
     def __del__(self):
         del self.bgm
@@ -513,58 +573,9 @@ def handle_events():
         if event.type == SDL_QUIT:
             Game_Framework.running = False
         elif event.type == SDL_KEYDOWN:
-            if spaceship.canmove == True:
-                if event.key == SDLK_UP:
-                    spaceship.setdirection(0)
-                    spaceship.canmove = False
-                    for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
-                            if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
-                            spaceship.y + 1 > tile.y - 1 and spaceship.y - 1 < tile.y - 1:
-                                tile.division = 551
-                                spaceship.setdirection(-1)
-                                spaceship.canmove = True
-                                break
-                elif event.key == SDLK_RIGHT:
-                    spaceship.setdirection(1)
-                    spaceship.canmove = False
-                    for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
-                            if spaceship.x + 1 > tile.x - 1 and spaceship.x - 1 < tile.x - 1 and \
-                            spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
-                                tile.division = 551
-                                spaceship.setdirection(-1)
-                                spaceship.canmove = True
-                                break
-                elif event.key == SDLK_DOWN:
-                    spaceship.setdirection(2)
-                    spaceship.canmove = False
-                    for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
-                            if spaceship.x + 1 > tile.x and spaceship.x - 1 < tile.x and \
-                            spaceship.y + 1 > tile.y + 1 and spaceship.y - 1 < tile.y + 1:
-                                tile.division = 551
-                                spaceship.setdirection(-1)
-                                spaceship.canmove = True
-                                break
-                elif event.key == SDLK_LEFT:
-                    spaceship.setdirection(3)
-                    spaceship.canmove = False
-                    for tile in tiles:
-                        if tile.type == 13 and tile.division > 0 and tile.division < 551:
-                            if spaceship.x + 1 > tile.x + 1 and spaceship.x - 1 < tile.x + 1 and \
-                            spaceship.y + 1 > tile.y and spaceship.y - 1 < tile.y:
-                                tile.division = 551
-                                spaceship.setdirection(-1)
-                                spaceship.canmove = True
-                                break
-                elif event.key == SDLK_ESCAPE:
-                    Game_Framework.running = False
-                elif event.key == SDLK_n:
-                    stage.stagenumup()
-                    tiles = []
-                    stage.load_stage()
-            if event.key == SDLK_g:
+            if event.key == SDLK_ESCAPE:
+                Game_Framework.running = False
+            elif event.key == SDLK_g:
                 grid.toggle()
             elif event.key == SDLK_b:
                 spaceship.bbtoggle()
@@ -576,6 +587,8 @@ def handle_events():
                     Game_Framework.change_state(Title_State)
                 tiles = []
                 stage.load_stage()
+            else:
+                spaceship.handle_event(event)
 
 def get_frame_time():
     global current_time
@@ -585,7 +598,7 @@ def get_frame_time():
     return frame_time
 
 def enter():
-    global background, status_board, grid, spaceship, stage, tiles, shipdraw, current_time
+    global background, status_board, grid, spaceship, stage, tiles, shipdraw, current_time, movingcounter
 
     current_time = get_time()
 
@@ -593,6 +606,7 @@ def enter():
     grid = Grid.Grid()
     spaceship = SpaceShip()
     stage = Stage()
+    movingcounter = MovingCounter.MovingCounter()
     tiles = []
     stage.load_stage()
     shipdraw = False
@@ -623,15 +637,18 @@ def update():
                 tile.division = 36
 
 def draw():
-    global tiles
-
     clear_canvas()
+
     stage.draw()
     grid.draw()
+
     for tile in tiles:
         tile.draw()
         tile.draw_bb()
+
     spaceship.draw()
     spaceship.draw_bb()
     status_board.draw()
+    movingcounter.draw()
+
     update_canvas()
