@@ -32,7 +32,7 @@ class SpaceShip:
     def __init__(self):
         self.stopimage = load_image('resource\space_ship\space_ship0.png')
         self.imagespritesheet = load_image('resource\space_ship\space_ship.png')
-        self.x, self.y = -1, -1
+        self.x, self.y = None, None
         self.state = SpaceShip.states["STAY"]
         self.next_stage = False
         self.frame = 0
@@ -115,9 +115,6 @@ class SpaceShip:
                             self.state = SpaceShip.states["STAY"]
                             break
 
-    def setdirection(self, way):
-        self.direction = way
-
     def update(self, frame_time):
         global shipdraw
         shipdraw = False
@@ -142,7 +139,7 @@ class SpaceShip:
             self.state = SpaceShip.states["STAY"]
             status_board.lifedown()
             if status_board.life < 0:
-                Game_Framework.change_state(Title_State)
+                movingcounter.save_savedata()
             tiles = []
             stage.load_stage()
         else:
@@ -581,10 +578,10 @@ def handle_events():
                 spaceship.bbtoggle()
                 tiles[0].bbtoggle()
             elif event.key == SDLK_SPACE:
-                spaceship.setdirection(-1)
+                spaceship.state = SpaceShip.states["STAY"]
                 status_board.lifedown()
                 if status_board.life < 0:
-                    Game_Framework.change_state(Title_State)
+                    movingcounter.save_savedata()
                 tiles = []
                 stage.load_stage()
             else:
