@@ -2,48 +2,52 @@ from pico2d import *
 import Game_Framework
 import Title_State
 import Playing_State
-
+import Define_File
 
 name = "RankingState"
 image = None
 font = None
+bigfont = None
 ranking_data = None
 
 def draw_ranking():
-
-    def my_sort(a):
+    def my_sort_stagenum(a):
         for i in range(len(a)):
-            for j in range(i + 1, len(a) - 1):
-                if a[i]['time'] < a[j]['time']:
-                    a[i], a[j] = a[j], a[i]
+            for j in range(len(a) - 1):
+                if a[j]['StageNumber'] < a[j + 1]['StageNumber']:
+                    a[j], a[j + 1] = a[j + 1], a[j]
 
-    f = open('ranking_data.txt', 'r')
-    ranking_data = json.load(f)
-    f.close()
+    def my_sort_movecount(a):
+        for i in range(len(a)):
+            for j in range(len(a) - 1):
+                if a[j]['Movecount'] > a[j + 1]['Movecount']:
+                    a[j], a[j + 1] = a[j + 1], a[j]
 
-    print('[RANKING]')
-    my_sort(ranking_data)
-    for data in ranking_data[:10]:
-        print("(Time : %4.1f,       x : %3d,        y : %d)" % (data['time'], data['x'], data['y']))
+    bigfont.draw(350, 840, "[ RANKING ]", (255, 255, 255))
 
-    font.draw(300, 550, "[RANKING]", (255, 255, 255))
+    my_sort_movecount(ranking_data)
+    my_sort_stagenum(ranking_data)
+
     y = 0
     for data in ranking_data[:10]:
-        font.draw(50, 500 - 50 * y, "(Time : %4.1f, x : %3d, y : %d)" % (data['time'], data['x'], data['y']), (255, 255, 255))
+        font.draw(50, 750 - 75 * y, "%2d. [Player %d]   Stage : %4d    Move : %4d)" % (y + 1, data['PlayerNumber'], data['StageNumber'], data['Movecount']), (255, 255, 255))
         y += 1
 
 def enter():
-    global image, font, ranking_data
-    image = load_image('blackboard.png')
-    font = load_font('ENCR10B.TTF', 40)
-    ranking_data_file = open('ranking_data_file.txt', 'r')
+    global image, font, bigfont, ranking_data
+    image = load_image('resource\Background\RankingScreen.png')
+    font = load_font('digital-7.TTF', 50)
+    bigfont = load_font('digital-7.TTF', 80)
+
+    ranking_data_file = open('RankingDataFile.txt', 'r')
     ranking_data = json.load(ranking_data_file)
     ranking_data_file.close()
 
 def exit():
-    global image, font
-    del(image)
-    del(font)
+    global image, font, bigfont
+    del image
+    del font
+    del bigfont
 
 def pause():
     pass
@@ -51,7 +55,7 @@ def pause():
 def resume():
     pass
 
-def handle_events(frame_time):
+def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -60,14 +64,14 @@ def handle_events(frame_time):
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 Game_Framework.change_state(Title_State)
 
-def update(frame_time):
+def update():
     pass
 
-def draw(frame_time):
+def draw():
     global image, ranking_data
 
     clear_canvas()
-    image.draw(400, 300)
+    image.draw(Define_File.WINWIDTH / 2, Define_File.WINHEIGHT / 2)
     draw_ranking()
 
     update_canvas()

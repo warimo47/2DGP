@@ -2,6 +2,7 @@ from pico2d import *
 import json
 import Game_Framework
 import Title_State
+import Ranking_State
 import Define_File
 import Status_Board
 import Grid
@@ -140,6 +141,7 @@ class SpaceShip:
             status_board.lifedown()
             if status_board.life < 0:
                 movingcounter.save_savedata()
+                Game_Framework.change_state(Ranking_State)
             tiles = []
             stage.load_stage()
         else:
@@ -527,8 +529,8 @@ class Stage:
     font = None
 
     def __init__(self):
-        Stage.stagenum = 1
-        Stage.image = load_image('resource\Map\stage1.png')
+        self.stagenum = 1
+        self.image = load_image('resource\Map\stage1.png')
         if Stage.font == None:
             Stage.font = load_font('digital-7.TTF', 45)
         self.bgm = load_music('NaverEnding_BGM.ogg')
@@ -536,10 +538,10 @@ class Stage:
         self.bgm.repeat_play()
 
     def stagenumup(self):
-        Stage.stagenum += 1
+        self.stagenum += 1
 
     def load_stage(self):
-        self.filename = 'Stage\Stage' + str(Stage.stagenum) + '.txt'
+        self.filename = 'Stage\Stage' + str(self.stagenum) + '.txt'
         self.stage_data_file = open(self.filename, 'r')
         self.stage_data = json.load(self.stage_data_file)
         self.stage_data_file.close()
@@ -550,15 +552,15 @@ class Stage:
                 NewTile = Tile.Tile(self.stage_data[number]['Tile_Type'], self.stage_data[number]['Division'],
                                     self.stage_data[number]['x'], self.stage_data[number]['y'])
                 tiles.append(NewTile)
-        Stage.image = load_image('resource\Map\stage' + str(Stage.stagenum) + '.png')
-        spaceship.canmove = True
+        self.image = load_image('resource\Map\stage' + str(self.stagenum) + '.png')
 
     def draw(self):
-        Stage.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
-        Stage.font.draw(18, 882, "Stage " + str(Stage.stagenum), (255, 255, 255))
+        self.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
+        Stage.font.draw(18, 882, "Stage " + str(self.stagenum), (255, 255, 255))
 
     def __del__(self):
         del self.bgm
+        del self.image
 
 # 키보드, 마우스 이벤트
 def handle_events():
@@ -568,9 +570,11 @@ def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
+            movingcounter.save_savedata()
             Game_Framework.running = False
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
+                movingcounter.save_savedata()
                 Game_Framework.running = False
             elif event.key == SDLK_g:
                 grid.toggle()
@@ -582,6 +586,7 @@ def handle_events():
                 status_board.lifedown()
                 if status_board.life < 0:
                     movingcounter.save_savedata()
+                    Game_Framework.change_state(Ranking_State)
                 tiles = []
                 stage.load_stage()
             else:

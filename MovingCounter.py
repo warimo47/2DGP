@@ -1,6 +1,7 @@
 from pico2d import *
 import json
 import Game_Framework
+import Playing_State
 import Title_State
 
 # 초기화 코드
@@ -23,13 +24,24 @@ class MovingCounter:
         self.playernumber = self.setting_data["PlayerNumber"]
 
     def save_savedata(self):
+        global Playing_State
+
+        self.ranking_data_file = open('RankingDataFile.txt', 'r')
+        self.ranking_data = json.load(self.ranking_data_file)
+        self.ranking_data_file.close()
+
+        self.ranking_data.append({'PlayerNumber' : self.playernumber, 'StageNumber' : Playing_State.stage.stagenum, 'Movecount' : self.totalmovecount})
+
+        self.ranking_data_file = open('RankingDataFile.txt', 'w')
+        json.dump(self.ranking_data, self.ranking_data_file)
+        self.ranking_data_file.close()
+
         self.playernumber += 1
         self.setting_data["PlayerNumber"] = self.playernumber
 
         self.setting_data_file = open('SettingData.txt', 'w')
         json.dump(self.setting_data, self.setting_data_file)
         self.setting_data_file.close()
-        Game_Framework.change_state(Title_State)
 
     def draw(self):
         MovingCounter.font_45.draw(900, 800, "TOTAL", (255, 255, 255))
