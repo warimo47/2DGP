@@ -165,26 +165,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 2 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 2 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -193,26 +193,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 3 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 3 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -221,26 +221,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 4 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 4 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -249,26 +249,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 5 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 5 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -277,26 +277,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 6 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 6 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -305,26 +305,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 7 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 7 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -333,26 +333,26 @@ class SpaceShip:
                         if tile.division == 1:
                             for othertile in tiles:
                                 if othertile.type == 8 and othertile.division == 2:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
                         elif tile.division == 2:
                             for othertile in tiles:
                                 if othertile.type == 8 and othertile.division == 1:
-                                    if self.direction == 0:
+                                    if self.state == SpaceShip.states["MOVE_TOP"]:
                                         self.x, self.y = othertile.x, othertile.y + 0.5
-                                    elif self.direction == 1:
+                                    elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                                         self.x, self.y = othertile.x + 0.5, othertile.y
-                                    elif self.direction == 2:
+                                    elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                         self.x, self.y = othertile.x, othertile.y - 0.5
-                                    elif self.direction == 3:
+                                    elif self.state == SpaceShip.states["MOVE_LEFT"]:
                                         self.x, self.y = othertile.x - 0.5, othertile.y
                                     SpaceShip.warp_sound.play()
                                     break
@@ -361,79 +361,79 @@ class SpaceShip:
                         self.ship_stop(tile.x, tile.y)
                 elif tile.type == 10:
                     if tile.division == 1:
-                        if self.direction == 0:
+                        if self.state == SpaceShip.states["MOVE_TOP"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif self.direction == 1:
+                        elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                             if self.x + 1 > tile.x + 0.5 and self.x - 1 < tile.x + 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                                self.direction = 0
+                                self.state = SpaceShip.states["MOVE_TOP"]
                                 self.x = tile.x
                                 self.y = tile.y + 1
                                 SpaceShip.bounce_sound.play()
-                        elif self.direction == 2:
+                        elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 0.5 and self.y - 1 < tile.y - 0.5:
-                                self.direction = 3
+                                self.state = SpaceShip.states["MOVE_LEFT"]
                                 self.x = tile.x - 1
                                 self.y = tile.y
                                 SpaceShip.bounce_sound.play()
-                        elif self.direction == 3:
+                        elif self.state == SpaceShip.states["MOVE_LEFT"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
                     elif tile.division == 2:
-                        if self.direction == 0:
+                        if self.state == SpaceShip.states["MOVE_TOP"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif self.direction == 1:
+                        elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif self.direction == 2:
+                        elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 0.5 and self.y - 1 < tile.y - 0.5:
-                                self.direction = 1
+                                self.state = SpaceShip.states["MOVE_RIGHT"]
                                 self.x = tile.x + 1
                                 self.y = tile.y
                                 SpaceShip.bounce_sound.play()
-                        elif self.direction == 3:
+                        elif self.state == SpaceShip.states["MOVE_LEFT"]:
                             if self.x + 1 > tile.x - 0.5 and self.x - 1 < tile.x - 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                                self.direction = 0
+                                self.state = SpaceShip.states["MOVE_TOP"]
                                 self.x = tile.x
                                 self.y = tile.y + 1
                                 SpaceShip.bounce_sound.play()
                     elif tile.division == 3:
-                        if self.direction == 0:
+                        if self.state == SpaceShip.states["MOVE_TOP"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 0.5 and self.y - 1 < tile.y + 0.5:
-                                self.direction = 1
+                                self.state = SpaceShip.states["MOVE_RIGHT"]
                                 self.x = tile.x + 1
                                 self.y = tile.y
                                 SpaceShip.bounce_sound.play()
-                        elif self.direction == 1:
+                        elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif self.direction == 2:
+                        elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif self.direction == 3:
+                        elif self.state == SpaceShip.states["MOVE_LEFT"]:
                             if self.x + 1 > tile.x - 0.5 and self.x - 1 < tile.x - 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                                self.direction = 2
+                                self.state = SpaceShip.states["MOVE_BOTTOM"]
                                 self.x = tile.x
                                 self.y = tile.y - 1
                                 SpaceShip.bounce_sound.play()
                     elif tile.division == 4:
-                        if self.direction == 0:
+                        if self.state == SpaceShip.states["MOVE_TOP"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 0.5 and self.y - 1 < tile.y + 0.5:
-                                self.direction = 3
+                                self.state = SpaceShip.states["MOVE_LEFT"]
                                 self.x = tile.x - 1
                                 self.y = tile.y
                                 SpaceShip.bounce_sound.play()
-                        elif self.direction == 1:
+                        elif self.state == SpaceShip.states["MOVE_RIGHT"]:
                             if self.x + 1 > tile.x + 0.5 and self.x - 1 < tile.x + 0.5 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                                self.direction = 2
+                                self.state = SpaceShip.states["MOVE_BOTTOM"]
                                 self.x = tile.x
                                 self.y = tile.y - 1
                                 SpaceShip.bounce_sound.play()
-                        elif self.direction == 2:
+                        elif self.state == SpaceShip.states["MOVE_BOTTOM"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
-                        elif self.direction == 3:
+                        elif self.state == SpaceShip.states["MOVE_LEFT"]:
                             if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                                 self.ship_stop(tile.x, tile.y)
                 elif tile.type == 11:
@@ -443,11 +443,11 @@ class SpaceShip:
                         elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
                             self.ship_stop(tile.x, tile.y - 1)
                         elif self.x + 1 > tile.x + 1 and self.x - 1 < tile.x + 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                            if self.direction == 1:
+                            if self.state == SpaceShip.states["MOVE_RIGHT"]:
                                 tile.division = 1
                                 self.x = tile.x + 1
                         elif self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                            if self.direction == 3:
+                            if self.state == SpaceShip.states["MOVE_LEFT"]:
                                 tile.division = 1
                                 self.x = tile.x - 1
                     elif tile.division == 1:
@@ -460,11 +460,11 @@ class SpaceShip:
                         elif self.x + 1 > tile.x - 1 and self.x - 1 < tile.x - 1 and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x - 1, tile.y)
                         elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y + 1 and self.y - 1 < tile.y + 1:
-                            if self.direction == 0:
+                            if self.state == SpaceShip.states["MOVE_TOP"]:
                                 tile.division = 1
                                 self.y = tile.y + 1
                         elif self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y - 1 and self.y - 1 < tile.y - 1:
-                            if self.direction == 2:
+                            if self.state == SpaceShip.states["MOVE_BOTTOM"]:
                                 tile.division = 1
                                 self.y = tile.y - 1
                     elif tile.division == 1:
@@ -477,13 +477,13 @@ class SpaceShip:
                         self.ship_stop(tile.x, tile.y)
                 elif tile.type == 14:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        if self.direction == 0 and tile.division % 10 == 0:
+                        if self.state == SpaceShip.states["MOVE_TOP"] and tile.division % 10 == 0:
                             tile.division += 1
-                        elif self.direction == 1 and tile.division % 100 // 10 == 0:
+                        elif self.state == SpaceShip.states["MOVE_RIGHT"] and tile.division % 100 // 10 == 0:
                             tile.division += 10
-                        elif self.direction == 2 and tile.division % 1000 // 100 == 0:
+                        elif self.state == SpaceShip.states["MOVE_BOTTOM"] and tile.division % 1000 // 100 == 0:
                             tile.division += 100
-                        elif self.direction == 3 and tile.division // 1000 == 0:
+                        elif self.state == SpaceShip.states["MOVE_LEFT"] and tile.division // 1000 == 0:
                             tile.division += 1000
                         self.ship_stop(tile.x, tile.y)
                 elif tile.type == 15:

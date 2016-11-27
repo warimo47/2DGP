@@ -146,7 +146,7 @@ class Tile:
             Tile.Portal_Pink.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 8:
             Tile.Portal_Skyblue.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        elif self.type == 9:
+        elif self.type == 9 and self.division == 0:
             Tile.Wall.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
         elif self.type == 10:
             if self.division == 1:
@@ -186,8 +186,6 @@ class Tile:
                 Tile.RButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
             else:
                 Tile.GButton_Top.draw((self.x + 0.5) * Define_File.TILESIZE, (self.y + 0.5) * Define_File.TILESIZE)
-        elif self.type == 15:
-            pass
 
     def draw_bb(self):
         if Tile.bbOn == True:
