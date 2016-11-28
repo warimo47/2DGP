@@ -28,7 +28,7 @@ class SpaceShip:
     bounce_sound = None
     warp_sound = None
 
-    states = {"STAY" : -1, "MOVE_TOP" : 0, "MOVE_RIGHT" : 1, "MOVE_BOTTOM": 2, "MOVE_LEFT" : 3}
+    states = { "STAY" : -1, "MOVE_TOP" : 0, "MOVE_RIGHT" : 1, "MOVE_BOTTOM": 2, "MOVE_LEFT" : 3 }
 
     def __init__(self):
         self.stopimage = load_image('resource\space_ship\space_ship0.png')
@@ -38,7 +38,7 @@ class SpaceShip:
         self.next_stage = False
         self.frame = 0
         self.total_frames = 0.0
-        self.bbOn = True
+        self.bbOn = False
         if SpaceShip.stagechange_sound == None:
             SpaceShip.stagechange_sound = load_wav('resource\EffectSound\\NextStage.wav')
             SpaceShip.stagechange_sound.set_volume(100)
@@ -154,7 +154,7 @@ class SpaceShip:
                                 status_board.fadestart()
                                 SpaceShip.stagechange_sound.play()
                             if status_board.fadecount < 450:
-                                movingcounter.reset_stagemovecount()
+                                movingcounter.stagemovecount_to_zero()
                                 stage.stagenumup()
                                 tiles = []
                                 stage.load_stage()
@@ -486,9 +486,6 @@ class SpaceShip:
                         elif self.state == SpaceShip.states["MOVE_LEFT"] and tile.division // 1000 == 0:
                             tile.division += 1000
                         self.ship_stop(tile.x, tile.y)
-                elif tile.type == 15:
-                    if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
-                        self.ship_stop(tile.x, tile.y)
 
     def ship_stop(self, tilex, tiley):
         if self.state == SpaceShip.states["MOVE_TOP"]:
@@ -501,6 +498,9 @@ class SpaceShip:
             self.x = tilex + 1
         self.state = SpaceShip.states["STAY"]
         SpaceShip.stop_sound.play()
+
+    def ship_stay(self):
+        self.state = SpaceShip.states["STAY"]
 
     def draw(self):
         if self.state == SpaceShip.states["STAY"]:
@@ -565,7 +565,6 @@ class Stage:
 # 키보드, 마우스 이벤트
 def handle_events():
     global tiles
-    global Tile
 
     events = get_events()
     for event in events:
@@ -582,12 +581,13 @@ def handle_events():
                 spaceship.bbtoggle()
                 tiles[0].bbtoggle()
             elif event.key == SDLK_SPACE:
-                spaceship.state = SpaceShip.states["STAY"]
+                spaceship.ship_stay()
+                movingcounter.reset_stagemovecount()
                 status_board.lifedown()
                 if status_board.life < 0:
                     movingcounter.save_savedata()
                     Game_Framework.change_state(Ranking_State)
-                tiles = []
+                tiles.clear()
                 stage.load_stage()
             else:
                 spaceship.handle_event(event)

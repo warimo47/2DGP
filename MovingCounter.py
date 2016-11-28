@@ -63,6 +63,10 @@ class MovingCounter:
         else:
             MovingCounter.font_30.draw(910, 40, str(self.playernumber), (255, 255, 255))
 
+    def reset_stagemovecount(self):
+        self.totalmovecount -= self.stagemovecount
+        self.stagemovecount = 0
+
     def increase_movecount(self):
         self.totalmovecount += 1
         self.stagemovecount += 1
@@ -71,5 +75,5 @@ class MovingCounter:
         self.totalmovecount -= 1
         self.stagemovecount -= 1
 
-    def reset_stagemovecount(self):
+    def stagemovecount_to_zero(self):
         self.stagemovecount = 0

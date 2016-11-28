@@ -32,7 +32,7 @@ class Tile:
     GButton_Right = None
     GButton_Bottom = None
     GButton_Left = None
-    bbOn = True
+    bbOn = False
     count_sound = None
     explosion_sound = None
 
