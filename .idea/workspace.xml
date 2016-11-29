@@ -30,18 +30,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Playing_State.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Playing_State.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Playing_State.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="526" column="0" selection-start-line="526" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
+            <state relative-caret-position="327">
+              <caret line="476" column="54" selection-start-line="476" selection-start-column="54" selection-end-line="476" selection-end-column="54" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <element signature="e#250#33452#0" expanded="false" />
                 <element signature="e#871#2082#0" expanded="false" />
                 <element signature="e#2127#5359#0" expanded="false" />
                 <element signature="e#5403#6066#0" expanded="false" />
-                <element signature="e#6107#32131#0" expanded="false" />
                 <element signature="e#6200#6470#0" expanded="false" />
                 <element signature="e#6571#7338#0" expanded="false" />
                 <element signature="e#7396#9471#0" expanded="false" />
@@ -70,6 +68,7 @@
                 <element signature="e#33170#33239#0" expanded="false" />
                 <element signature="e#33273#33367#0" expanded="false" />
                 <element signature="e#33400#33452#0" expanded="false" />
+                <element signature="e#33471#34899#0" expanded="false" />
                 <element signature="e#33516#33796#0" expanded="false" />
                 <element signature="e#33832#33850#0" expanded="false" />
                 <element signature="e#33886#34642#0" expanded="false" />
@@ -78,18 +77,17 @@
                 <element signature="e#34939#35933#0" expanded="false" />
                 <element signature="e#35961#36077#0" expanded="false" />
                 <element signature="e#36096#36456#0" expanded="false" />
-                <element signature="e#36545#36946#0" expanded="false" />
-                <element signature="e#36964#37195#0" expanded="false" />
+                <element signature="e#36965#37196#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RankingDataFile.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RankingDataFile.txt">
+      <file leaf-file-name="MovingCounter.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MovingCounter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="76" selection-start-line="0" selection-start-column="76" selection-end-line="0" selection-end-column="76" />
+            <state relative-caret-position="1140">
+              <caret line="64" column="91" selection-start-line="64" selection-start-column="91" selection-end-line="64" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -133,8 +131,8 @@
         <option value="$PROJECT_DIR$/RankingDataFile.txt" />
         <option value="$PROJECT_DIR$/Ranking_State.py" />
         <option value="$PROJECT_DIR$/Tile.py" />
-        <option value="$PROJECT_DIR$/MovingCounter.py" />
         <option value="$PROJECT_DIR$/Playing_State.py" />
+        <option value="$PROJECT_DIR$/MovingCounter.py" />
       </list>
     </option>
   </component>
@@ -169,8 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -191,6 +187,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -642,34 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-          <folding>
-            <element signature="e#4246#4265#0" expanded="false" />
-            <element signature="e#4297#5008#0" expanded="false" />
-            <element signature="e#5038#9164#0" expanded="false" />
-            <element signature="e#9197#9261#0" expanded="false" />
-            <element signature="e#9293#9660#0" expanded="false" />
-            <element signature="e#9694#9788#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MovingCounter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -681,17 +651,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="122" column="47" selection-start-line="122" selection-start-column="47" selection-end-line="122" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Playing_State.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="526" column="0" selection-start-line="526" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
+        <state relative-caret-position="327">
+          <caret line="476" column="54" selection-start-line="476" selection-start-column="54" selection-end-line="476" selection-end-column="54" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#250#33452#0" expanded="false" />
             <element signature="e#871#2082#0" expanded="false" />
             <element signature="e#2127#5359#0" expanded="false" />
             <element signature="e#5403#6066#0" expanded="false" />
-            <element signature="e#6107#32131#0" expanded="false" />
             <element signature="e#6200#6470#0" expanded="false" />
             <element signature="e#6571#7338#0" expanded="false" />
             <element signature="e#7396#9471#0" expanded="false" />
@@ -720,6 +696,7 @@
             <element signature="e#33170#33239#0" expanded="false" />
             <element signature="e#33273#33367#0" expanded="false" />
             <element signature="e#33400#33452#0" expanded="false" />
+            <element signature="e#33471#34899#0" expanded="false" />
             <element signature="e#33516#33796#0" expanded="false" />
             <element signature="e#33832#33850#0" expanded="false" />
             <element signature="e#33886#34642#0" expanded="false" />
@@ -728,9 +705,16 @@
             <element signature="e#34939#35933#0" expanded="false" />
             <element signature="e#35961#36077#0" expanded="false" />
             <element signature="e#36096#36456#0" expanded="false" />
-            <element signature="e#36545#36946#0" expanded="false" />
-            <element signature="e#36964#37195#0" expanded="false" />
+            <element signature="e#36965#37196#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MovingCounter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="64" column="91" selection-start-line="64" selection-start-column="91" selection-end-line="64" selection-end-column="91" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -46,11 +46,29 @@ class MovingCounter:
     def draw(self):
         MovingCounter.font_45.draw(900, 800, "TOTAL", (255, 255, 255))
         MovingCounter.font_45.draw(910, 750, "MOVE", (255, 255, 255))
-        MovingCounter.font_45.draw(950, 700, str(self.totalmovecount), (255, 255, 255))
+        if self.totalmovecount < 10:
+            MovingCounter.font_45.draw(950, 700, str(self.totalmovecount), (255, 255, 255))
+        elif self.totalmovecount < 100:
+            MovingCounter.font_45.draw(940, 700, str(self.totalmovecount), (255, 255, 255))
+        elif self.totalmovecount < 1000:
+            MovingCounter.font_45.draw(930, 700, str(self.totalmovecount), (255, 255, 255))
+        elif self.totalmovecount < 10000:
+            MovingCounter.font_45.draw(920, 700, str(self.totalmovecount), (255, 255, 255))
+        else:
+            MovingCounter.font_45.draw(910, 700, str(self.totalmovecount), (255, 255, 255))
         MovingCounter.font_45.draw(920, 650, "THIS", (255, 255, 255))
         MovingCounter.font_45.draw(900, 600, "STAGE", (255, 255, 255))
         MovingCounter.font_45.draw(910, 550, "MOVE", (255, 255, 255))
-        MovingCounter.font_45.draw(950, 500, str(self.stagemovecount), (255, 255, 255))
+        if self.stagemovecount < 10:
+            MovingCounter.font_45.draw(950, 500, str(self.stagemovecount), (255, 255, 255))
+        elif self.stagemovecount < 100:
+            MovingCounter.font_45.draw(940, 500, str(self.stagemovecount), (255, 255, 255))
+        elif self.stagemovecount < 1000:
+            MovingCounter.font_45.draw(930, 500, str(self.stagemovecount), (255, 255, 255))
+        elif self.stagemovecount < 10000:
+            MovingCounter.font_45.draw(920, 500, str(self.stagemovecount), (255, 255, 255))
+        else:
+            MovingCounter.font_45.draw(910, 500, str(self.stagemovecount), (255, 255, 255))
         MovingCounter.font_30.draw(910, 80, "PLAYER ", (255, 255, 255))
         if self.playernumber < 10:
             MovingCounter.font_30.draw(950, 40, str(self.playernumber), (255, 255, 255))

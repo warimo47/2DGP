@@ -105,6 +105,9 @@ class Tile:
     def explode(self):
         self.division = 551
 
+    def gate_turn_on(self):
+        self.division = 36
+
     def update(self):
         if self.type == 1:
             if self.division > 0:
@@ -122,7 +125,6 @@ class Tile:
                 if self.division == 551:
                     Tile.explosion_sound.play()
                 self.division += 5
-
         elif self.type == 14:
             if self.division != 1111:
                 Tile.gate_on = False

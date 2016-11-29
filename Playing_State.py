@@ -470,7 +470,7 @@ class SpaceShip:
                     elif tile.division == 1:
                         if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                             self.ship_stop(tile.x, tile.y)
-                elif tile.type == 13 and tile.division < 651:
+                elif tile.type == 13 and tile.division < 551:
                     if self.x + 1 > tile.x and self.x - 1 < tile.x and self.y + 1 > tile.y and self.y - 1 < tile.y:
                         if tile.division == 0:
                             tile.division += 50
@@ -636,7 +636,7 @@ def update():
     if Tile.Tile.gate_on == True:
         for tile in tiles:
             if tile.type == 1 and tile.division == 0:
-                tile.division = 36
+                tile.gate_turn_on()
 
 def draw():
     clear_canvas()
