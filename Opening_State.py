@@ -3,7 +3,7 @@ import Title_State
 from pico2d import *
 import Define_File
 
-name = "StartState"
+name = "OpeningState"
 image = None
 logo_time = 0.0
 

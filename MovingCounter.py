@@ -24,8 +24,6 @@ class MovingCounter:
         self.playernumber = self.setting_data["PlayerNumber"]
 
     def save_savedata(self):
-        global Playing_State
-
         self.ranking_data_file = open('RankingDataFile.txt', 'r')
         self.ranking_data = json.load(self.ranking_data_file)
         self.ranking_data_file.close()

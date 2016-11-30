@@ -80,7 +80,7 @@ def run(start_state):
         stack.pop()
 
 def test_game_framework():
-    start_state = TestGameState('StartState')
+    start_state = TestGameState('TitleState')
     run(start_state)
 
 if __name__ == '__main__':
