@@ -154,6 +154,7 @@ class SpaceShip:
                                 status_board.fadestart()
                                 SpaceShip.stagechange_sound.play()
                             if status_board.fadecount < 450:
+                                movingcounter.check_bonuslife(stage.stagenum)
                                 movingcounter.stagemovecount_to_zero()
                                 stage.stagenumup()
                                 tiles = []

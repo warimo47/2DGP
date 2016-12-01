@@ -23,6 +23,15 @@ class MovingCounter:
         self.setting_data_file.close()
         self.playernumber = self.setting_data["PlayerNumber"]
 
+        self.bonus_data_file = open('Bonus.txt', 'r')
+        self.bonus_data = json.load(self.bonus_data_file)
+        self.bonus_data_file.close()
+
+    def check_bonuslife(self, _stagenum):
+        global Playing_State
+        if self.stagemovecount <= self.bonus_data[str(_stagenum)]:
+            Playing_State.status_board.lifeup()
+
     def save_savedata(self):
         self.ranking_data_file = open('RankingDataFile.txt', 'r')
         self.ranking_data = json.load(self.ranking_data_file)

@@ -25,6 +25,9 @@ class Status_Board:
     def lifedown(self):
         self.life -= 1
 
+    def lifeup(self):
+        self.life += 1
+
     def fadestart(self):
         self.fadecount = 1550
         self.stagechangenow = True
