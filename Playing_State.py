@@ -534,7 +534,7 @@ class Stage:
         self.image = load_image('resource\Map\stage1.png')
         if Stage.font == None:
             Stage.font = load_font('digital-7.TTF', 45)
-        self.bgm = load_music('NaverEnding_BGM.ogg')
+        self.bgm = load_music('NeverEnding_BGM.ogg')
         self.bgm.set_volume(300)
         self.bgm.repeat_play()
 
