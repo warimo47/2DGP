@@ -25,12 +25,28 @@ def draw_ranking():
 
     bigfont.draw(350, 840, "[ RANKING ]", (255, 255, 255))
 
-    my_sort_movecount(ranking_data)
-    my_sort_stagenum(ranking_data)
+    if len(ranking_data) > 1:
+        my_sort_movecount(ranking_data)
+        my_sort_stagenum(ranking_data)
 
-    y = 0
+    y = 1
     for data in ranking_data[:10]:
-        font.draw(50, 750 - 75 * y, "%2d. [Player %d]   Stage : %4d    Move : %4d)" % (y + 1, data['PlayerNumber'], data['StageNumber'], data['Movecount']), (255, 255, 255))
+        if y == 1:
+            if data['StageNumber'] > 30:
+                font.draw(65, 825 - 75 * y, "%2d. [Player %d]   Stage : EARTH Move : %4d)" % (y, data['PlayerNumber'], data['Movecount']), (255, 255, 255))
+            else:
+                font.draw(65, 825 - 75 * y, "%2d. [Player %d]   Stage : %4d    Move : %4d)" % (y, data['PlayerNumber'], data['StageNumber'], data['Movecount']), (255, 255, 255))
+        elif y == 10:
+            if data['StageNumber'] > 30:
+                font.draw(55, 825 - 75 * y, "%2d. [Player %d]   Stage : EARTH Move : %4d)" % (y, data['PlayerNumber'], data['Movecount']), (255, 255, 255))
+            else:
+                font.draw(55, 825 - 75 * y, "%2d. [Player %d]   Stage : %4d    Move : %4d)" % (y, data['PlayerNumber'], data['StageNumber'], data['Movecount']), (255, 255, 255))
+        else:
+            if data['StageNumber'] > 30:
+                font.draw(50, 825 - 75 * y, "%2d. [Player %d]   Stage : EARTH Move : %4d)" % (y, data['PlayerNumber'], data['Movecount']), (255, 255, 255))
+            else:
+                font.draw(50, 825 - 75 * y, "%2d. [Player %d]   Stage : %4d    Move : %4d)" % (y, data['PlayerNumber'], data['StageNumber'], data['Movecount']), (255, 255, 255))
+
         y += 1
 
 def enter():

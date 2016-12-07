@@ -540,20 +540,24 @@ class Stage:
 
     def stagenumup(self):
         self.stagenum += 1
+        if self.stagenum > 30:
+            movingcounter.save_savedata()
+            Game_Framework.change_state(Ranking_State)
 
     def load_stage(self):
-        self.filename = 'Stage\Stage' + str(self.stagenum) + '.txt'
-        self.stage_data_file = open(self.filename, 'r')
-        self.stage_data = json.load(self.stage_data_file)
-        self.stage_data_file.close()
-        for number in self.stage_data:
-            if self.stage_data[number]['Tile_Type'] == 0:
-                spaceship.x, spaceship.y = self.stage_data[number]['x'], self.stage_data[number]['y']
-            else:
-                NewTile = Tile.Tile(self.stage_data[number]['Tile_Type'], self.stage_data[number]['Division'],
-                                    self.stage_data[number]['x'], self.stage_data[number]['y'])
-                tiles.append(NewTile)
-        self.image = load_image('resource\Map\stage' + str(self.stagenum) + '.png')
+        if self.stagenum < 31:
+            self.filename = 'Stage\Stage' + str(self.stagenum) + '.txt'
+            self.stage_data_file = open(self.filename, 'r')
+            self.stage_data = json.load(self.stage_data_file)
+            self.stage_data_file.close()
+            for number in self.stage_data:
+                if self.stage_data[number]['Tile_Type'] == 0:
+                    spaceship.x, spaceship.y = self.stage_data[number]['x'], self.stage_data[number]['y']
+                else:
+                    NewTile = Tile.Tile(self.stage_data[number]['Tile_Type'], self.stage_data[number]['Division'],
+                                        self.stage_data[number]['x'], self.stage_data[number]['y'])
+                    tiles.append(NewTile)
+            self.image = load_image('resource\Map\stage' + str(self.stagenum) + '.png')
 
     def draw(self):
         self.image.draw((Define_File.WINWIDTH - 108) / 2, Define_File.WINHEIGHT / 2)
