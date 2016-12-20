@@ -1,1 +1,1 @@
-[]
+[{"StageNumber": 4, "Movecount": 45, "PlayerNumber": 1}, {"StageNumber": 1, "Movecount": 5, "PlayerNumber": 2}, {"StageNumber": 6, "Movecount": 133, "PlayerNumber": 3}, {"StageNumber": 5, "Movecount": 130, "PlayerNumber": 4}, {"StageNumber": 1, "Movecount": 1, "PlayerNumber": 5}, {"StageNumber": 4, "Movecount": 70, "PlayerNumber": 6}, {"StageNumber": 5, "Movecount": 79, "PlayerNumber": 7}, {"StageNumber": 6, "Movecount": 157, "PlayerNumber": 8}, {"StageNumber": 1, "Movecount": 5, "PlayerNumber": 9}, {"StageNumber": 1, "Movecount": 2, "PlayerNumber": 10}]
